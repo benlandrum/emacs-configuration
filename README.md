@@ -1,2 +1,3 @@
 # emacs-configuration
-Personal Emacs configuration
+
+This is my personal Emacs configuration.
