@@ -12,15 +12,13 @@
   ;; (add-to-list 'load-path "<path where use-package is installed>")
   (require 'use-package))
 
-(use-package form-feed)
+;; Textual rendering
+(use-package form-feed
+  :hook (emacs-lisp-mode emacs-compilation-mode))
 
 (use-package which-key
   :config
   (which-key-mode))
-
-;; Textual rendering
-(add-hook 'emacs-lisp-mode-hook 'form-feed-mode)
-(add-hook 'emacs-compilation-mode-hook 'form-feed-mode)
 
 (defun revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
