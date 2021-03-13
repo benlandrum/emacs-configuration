@@ -1,6 +1,7 @@
-(with-eval-after-load 'org
+(use-package org
+  :config
   (setq org-startup-indented t
 	org-agenda-files '(my-org-agenda-files))
-  (add-hook 'org-mode-hook #'visual-line-mode))
+  :hook (visual-line-mode))
 
 (provide 'init-org)
