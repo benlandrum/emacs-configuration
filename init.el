@@ -8,7 +8,12 @@
  my-lsp-clients-clangd-executable "/ssh:vagrant@10.211.55.4#22:/usr/bin/clangd"
  my-lsp-debug t
  my-org-agenda-files "~/org/"
+ my-minimum-emacs-version "27.1"
  )
+
+(when (version< emacs-version my-minimum-emacs-version)
+  (error "Emacs version %s is too old.  Need at least %s."
+	 emacs-version my-minimum-emacs-version))
 
 ;; Remove this!
 (custom-set-faces
@@ -20,7 +25,9 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (let ((file-name-handler-alist nil)  ; anti-regex speed loading hack
-      (gc-cons-threshold 100000000)) ; delay garbage collection
+      (gc-cons-threshold 100000000)  ; delay garbage collection
+      (debug-on-error t)
+      (debug-on-quit t))
   (require 'init-global)
   (require 'init-platform)
   (require 'init-appearance)
