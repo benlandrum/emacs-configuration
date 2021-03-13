@@ -4,6 +4,9 @@
 (setq ring-bell-function 'ignore)
 (setq column-number-mode t)
 
+;; Type 'y' instead of 'yes' and Enter.
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
