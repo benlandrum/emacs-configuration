@@ -12,9 +12,9 @@
   ;; (add-to-list 'load-path "<path where use-package is installed>")
   (require 'use-package))
 
-;; Textual rendering
 (use-package form-feed
-  :hook (emacs-lisp-mode emacs-compilation-mode))
+  :hook ((emacs-lisp-mode . form-feed-mode)
+	 (emacs-compilation-mode . form-feed-mode)))
 
 (use-package which-key
   :config
