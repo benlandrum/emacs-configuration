@@ -5,17 +5,24 @@
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l"
+	lsp-clients-clangd-args '("--j=1" "--background-index=true" "--log=verbose")
 	lsp-clients-clangd-executable my-lsp-clients-clangd-executable
 	lsp-idle-delay 0.1                  ; clangd is fast
 	lsp-headerline-breadcrumb-enable t) ; be more ide-ish
   (when my-lsp-debug
     (setq lsp-log-io t
 	  lsp-print-performance t))
-  :config (lsp-register-client
-	   (make-lsp-client :new-connection (lsp-tramp-connection "pyls")
-			    :major-modes '(python-mode)
-			    :remote? t
-			    :server-id 'pyls-remote))
+  :config
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "pyls")
+		    :major-modes '(python-mode)
+		    :remote? t
+		    :server-id 'pyls-remote))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+		    :major-modes '(c-mode c++-mode)
+		    :remote? t
+		    :server-id 'clangd-remote))
   :hook ((c-mode . lsp)
 	 (cpp-mode . lsp)
 	 (python-mode . lsp)
