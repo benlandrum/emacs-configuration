@@ -4,6 +4,9 @@
 (setq ring-bell-function 'ignore)
 (setq column-number-mode t)
 
+;; Ignore Emacs 2.7 deprecated package warning messages.
+(setq byte-compile-warnings '(cl-functions))
+
 ;; Type 'y' instead of 'yes' and Enter.
 (defalias 'yes-or-no-p 'y-or-n-p)
 
