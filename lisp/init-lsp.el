@@ -1,3 +1,6 @@
+(use-package flycheck
+  :init (global-flycheck-mode))
+
 ;; Important: stderr gets sent to /tmp/<process-name>-<id>~stderr
 ;; https://emacs-lsp.github.io/lsp-mode/page/remote/
 ;; I needed to see these and find out that pyls was on python2.
