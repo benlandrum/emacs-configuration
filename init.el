@@ -52,4 +52,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(clojure-mode org-noter yaml-mode xterm-color which-key use-package treemacs-projectile speed-type solarized-theme protobuf-mode pdf-tools magit lsp-pyright helm-xref form-feed dockerfile-mode dired-du dap-mode counsel bazel-mode)))
+   '(flycheck clojure-mode org-noter yaml-mode xterm-color which-key use-package treemacs-projectile speed-type solarized-theme protobuf-mode pdf-tools magit lsp-pyright helm-xref form-feed dockerfile-mode dired-du dap-mode counsel bazel-mode)))
