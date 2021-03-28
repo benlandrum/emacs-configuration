@@ -1,3 +1,10 @@
+;;; init-pdf.el --- Customize PDF interaction.
+
+;;; Commentary:
+;; Really just customizing pdf-tools here.
+
+;;; Code:
+
 (setq pdf-info-epdfinfo-program my-epdfinfo-program)
 
 (use-package pdf-tools
@@ -24,3 +31,5 @@
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
 (provide 'init-pdf)
+
+;;; init-pdf.el ends here

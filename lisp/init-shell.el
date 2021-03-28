@@ -1,9 +1,14 @@
+;;; init-shell.el --- Customize shell usage within Emacs.
+
+;;; Commentary:
+;; This is a work in progress.
+
+;;; Code:
+
 ;; From Tikhon Jelvis's config...
 ;; https://www.quora.com/What-does-Tikhon-Jelviss-Emacs-setup-look-like
 (defun new-shell (name) 
-  "Opens a new shell buffer with the given name in 
-asterisks (*name*) in the current directory and changes the 
-prompt to 'name>'." 
+  "Open a new shell buffer with the given name in asterisks (*NAME*) in the current directory, and change the prompt to NAME." 
   (interactive "sName: ") 
   (pop-to-buffer (concat "*" name "*")) 
   (unless (eq major-mode 'shell-mode)
@@ -19,9 +24,7 @@ prompt to 'name>'."
 (global-set-key (kbd "C-c s") 'new-shell)
 
 (defun new-term (name) 
-  "Opens a new term buffer with the given name in 
-asterisks (*name*) in the current directory and changes the 
-prompt to 'name>'." 
+  "Open a new term buffer with the given name in asterisks (*NAME*) in the current directory, and change the prompt to 'NAME'." 
   (interactive "sName: ") 
   (pop-to-buffer (concat "*" name "*")) 
   (unless (eq major-mode 'term-mode) 
@@ -69,3 +72,5 @@ prompt to 'name>'."
 (use-package xterm-color)
 
 (provide 'init-shell)
+
+;;; init-shell.el ends here

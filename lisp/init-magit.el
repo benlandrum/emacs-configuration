@@ -1,3 +1,10 @@
+;;; init-magit.el --- Customize magit.
+
+;;; Commentary:
+;; Some annoyance-removing tweaks.
+
+;;; Code:
+
 (use-package magit)
 
 ;; The vc branch line doesn't stay current without (setq auto-revert-check-vc-info t)
@@ -9,3 +16,5 @@
 (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
 
 (provide 'init-magit)
+
+;;; init-magit.el ends here

@@ -1,3 +1,10 @@
+;;; init-lsp.el --- Configure LSP mode and clients here.
+
+;;; Commentary:
+;; This is a work in progress.  LSP sometimes crashes and stalls.
+
+;;; Code:
+
 (use-package flycheck
   :init (global-flycheck-mode))
 
@@ -39,3 +46,5 @@
 (use-package dap-cpptools)
 
 (provide 'init-lsp)
+
+;;; init-lsp.el ends here

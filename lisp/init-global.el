@@ -1,3 +1,10 @@
+;;; init-global.el --- Configure low-level Emacs options.
+
+;;; Commentary:
+;; Remove some annoyances (e.g., bells), and require use-package.
+
+;;; Code:
+
 ;; Quickly access the predefined master init file with C-x r j e
 (set-register ?e (cons 'file my-init-file))
 
@@ -33,3 +40,5 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (provide 'init-global)
+
+;;; init-global.el ends here

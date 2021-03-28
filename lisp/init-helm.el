@@ -1,3 +1,10 @@
+;;; init-helm.el --- Configure helm.
+
+;;; Commentary:
+;; Only a little bit of customization here so far.  Not really used yet.
+
+;;; Code:
+
 (use-package helm
   :config
   (helm-mode)
@@ -8,3 +15,5 @@
 (use-package helm-xref)
 
 (provide 'init-helm)
+
+;;; init-helm.el ends here

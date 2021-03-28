@@ -1,3 +1,10 @@
+;;; init-org.el --- Customize org and related modes.
+
+;;; Commentary:
+;; Only a few settings currently.
+
+;;; Code:
+
 (use-package org
   :config
   (setq org-startup-indented t
@@ -7,3 +14,5 @@
 (use-package org-noter)
 
 (provide 'init-org)
+
+;;; init-org.el ends here

@@ -1,5 +1,4 @@
-;; Uncomment this to enable error debug on start-up.
-;; (setq debug-on-error t)
+;;; init.el --- Ben Landrum's Emacs .init file
 
 ;; Global variables
 (setq
@@ -9,10 +8,17 @@
  my-lsp-debug t
  my-org-agenda-files "~/org/"
  my-minimum-emacs-version "27.1"
+ debug-on-error nil
  )
 
+;;; Commentary:
+;; This is a modular setup, where different modes have their own
+;; elisp files.  It enables me to program C++ and Python in a VM, as well as
+;; reading *.pdf files and authoring LaTeX.
+
+;;; Code:
 (when (version< emacs-version my-minimum-emacs-version)
-  (error "Emacs version %s is too old.  Need at least %s."
+  (error "Emacs version %s is older than required version %s"
 	 emacs-version my-minimum-emacs-version))
 
 ;; Remove this!
@@ -53,3 +59,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(flycheck clojure-mode org-noter yaml-mode xterm-color which-key use-package treemacs-projectile speed-type solarized-theme protobuf-mode pdf-tools magit lsp-pyright helm-xref form-feed dockerfile-mode dired-du dap-mode counsel bazel-mode)))
+
+(provide 'init)
+
+;;; init.el ends here

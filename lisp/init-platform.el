@@ -1,3 +1,10 @@
+;;; init-platform.el --- OS-specific settings.
+
+;;; Commentary:
+;; Just adding support for Apple operating systems here.
+
+;;; Code:
+
 (when (string= system-type "darwin")
   (setq dired-use-ls-dired nil
 	ns-alternate-modifier '(:ordinary super
@@ -9,3 +16,5 @@
     (setq exec-path (append exec-path (list texbin-path)))))
 
 (provide 'init-platform)
+
+;;; init-platform.el ends here
