@@ -8,6 +8,8 @@
  my-lsp-debug t
  my-org-agenda-files "~/org/"
  my-minimum-emacs-version "27.1"
+ my-vagrant-vm-address "10.211.55.4#22"
+ my-vagrant-vm-path "/Users/blandrum/beeswax/vms/serving"
  debug-on-error nil
  )
 
