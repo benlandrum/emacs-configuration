@@ -11,6 +11,11 @@
 (setq ring-bell-function 'ignore)
 (setq column-number-mode t)
 
+;; Prevent automatic customization of init.el.
+(setq custom-file (concat user-emacs-directory my-custom-file))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 ;; Ignore Emacs 2.7 deprecated package warning messages.
 (setq byte-compile-warnings '(cl-functions))
 
