@@ -8,7 +8,7 @@
 (use-package org
   :config
   (setq org-startup-indented t
-	org-agenda-files '(my-org-agenda-files))
+	org-agenda-files my-org-agenda-files)
 
   ;; Sync LaTeX fragment scaling with text scaling.
   ;; https://emacs.stackexchange.com/questions/3387/how-to-enlarge-latex-fragments-in-org-mode-at-the-same-time-as-the-buffer-text
