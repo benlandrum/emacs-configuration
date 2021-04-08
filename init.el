@@ -8,6 +8,7 @@
  my-lsp-clients-clangd-executable "/ssh:vagrant@10.211.55.4#22:/usr/bin/clangd"
  my-lsp-debug t
  my-org-directory "~/org"
+ my-org-roam-directory "~/org"
  my-minimum-emacs-version "27.1"
  my-vagrant-vm-address "10.211.55.4#22"
  my-vagrant-vm-path "/Users/blandrum/beeswax/vms/serving"

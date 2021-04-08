@@ -23,6 +23,19 @@
 (use-package org-noter
   :bind ("M-i" . org-noter-insert-precise-note))
 
+(use-package org-roam
+  :hook
+  (after-init . org-roam-mode)
+  :custom
+  (org-roam-directory my-org-roam-directory)
+  :bind (:map org-roam-mode-map
+	      (("C-c n l" . org-roam)
+	       ("C-c n f" . org-roam-find-file)
+	       ("C-c n g" . org-roam-graph))
+	      :map org-mode-map
+	      (("C-c n i" . org-roam-insert))
+	      (("C-c n I" . org-roam-insert-immediate))))
+
 (provide 'init-org)
 
 ;;; init-org.el ends here
