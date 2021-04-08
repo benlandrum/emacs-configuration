@@ -43,7 +43,7 @@
 (use-package lsp-treemacs)
 
 (use-package dap-mode)
-(use-package dap-cpptools)
+;(use-package dap-cpptools)
 
 (provide 'init-lsp)
 
