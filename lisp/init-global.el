@@ -30,6 +30,9 @@
   ;; (add-to-list 'load-path "<path where use-package is installed>")
   (require 'use-package))
 
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+
 (use-package form-feed
   :hook ((emacs-lisp-mode . form-feed-mode)
 	 (emacs-compilation-mode . form-feed-mode)))
