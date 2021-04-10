@@ -10,12 +10,16 @@
   (setq org-startup-indented t
 	org-agenda-files (directory-files-recursively
 			  my-org-directory "\.org$" nil t t))
+  (plist-put org-format-latex-options
+	     :scale my-org-format-latex-text-ratio)
 
   ;; Sync LaTeX fragment scaling with text scaling.
   ;; https://emacs.stackexchange.com/questions/3387/how-to-enlarge-latex-fragments-in-org-mode-at-the-same-time-as-the-buffer-text
   (defun update-org-latex-fragments ()
     (org-latex-preview '(64))
-    (plist-put org-format-latex-options :scale text-scale-mode-amount)
+    (plist-put org-format-latex-options
+	       :scale (* my-org-format-latex-text-ratio
+			 text-scale-mode-amount))
     (org-latex-preview '(16)))
   (add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
   (add-hook 'org-mode-hook #'visual-line-mode))
