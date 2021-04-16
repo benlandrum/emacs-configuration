@@ -24,6 +24,8 @@
   (add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
   (add-hook 'org-mode-hook #'visual-line-mode))
 
+;; This does not seem to play well with visual line mode.
+;; Consider disabling it here.
 (use-package org-noter
   :bind ("M-i" . org-noter-insert-precise-note))
 
