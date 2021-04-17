@@ -10,6 +10,7 @@
 
 (setq ring-bell-function 'ignore)
 (setq column-number-mode t)
+(setq vc-follow-symlinks t)
 
 ;; Prevent automatic customization of init.el.
 (setq custom-file (concat user-emacs-directory my-custom-file))
