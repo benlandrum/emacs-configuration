@@ -9,7 +9,8 @@
   :config
   (setq org-startup-indented t
 	org-agenda-files (directory-files-recursively
-			  my-org-directory "\.org$" nil t t))
+			  my-org-directory "\.org$" nil t t)
+	org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
   (plist-put org-format-latex-options
 	     :scale my-org-format-latex-text-ratio)
 
