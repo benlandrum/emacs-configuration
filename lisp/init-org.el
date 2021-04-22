@@ -25,6 +25,10 @@
   (add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
   (add-hook 'org-mode-hook #'visual-line-mode))
 
+;; Not technically org, but I always use this through org.
+;; "C-c C-e h o" renders to my browser with syntax highlighting with this.
+(use-package htmlize)
+
 ;; This does not seem to play well with visual line mode.
 ;; Consider disabling it here.
 (use-package org-noter
