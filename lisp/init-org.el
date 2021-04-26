@@ -7,7 +7,8 @@
 
 (use-package org
   :config
-  (setq org-startup-indented t
+  (setq org-cycle-emulate-tab nil
+	org-startup-indented t
 	org-agenda-files (directory-files-recursively
 			  my-org-directory "\.org$" nil t t)
 	org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
