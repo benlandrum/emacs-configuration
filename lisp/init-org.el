@@ -2,6 +2,7 @@
 
 ;;; Commentary:
 ;; The biggest customizations are indented startup and org-noter bindings.
+;; In the future, I'd like to add a natural way to link between noter documents.
 
 ;;; Code:
 
@@ -29,6 +30,8 @@
 ;; Not technically org, but I always use this through org.
 ;; "C-c C-e h o" renders to my browser with syntax highlighting with this.
 (use-package htmlize)
+
+(use-package ox-gfm)
 
 ;; This does not seem to play well with visual line mode.
 ;; Consider disabling it here.
