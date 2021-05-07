@@ -1,9 +1,13 @@
 ;;; init-platform.el --- OS-specific settings.
 
 ;;; Commentary:
-;; Just adding support for Apple operating systems here.
+;; Just adding paths and support for Apple operating systems here.
 
 ;;; Code:
+
+(let ((usr-local-bin-path "/usr/local/bin"))
+  (setenv "PATH" (concat (getenv "PATH") ":" usr-local-bin-path))
+  (setq exec-path (append exec-path (list usr-local-bin-path))))
 
 (when (string= system-type "darwin")
   (setq dired-use-ls-dired nil
