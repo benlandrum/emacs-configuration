@@ -48,6 +48,20 @@
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+(use-package google-this
+  :config
+  (google-this-mode 1))
+
+(use-package google-translate
+  :custom
+  (google-translate-backend-method 'curl)
+  :config
+  ;; See https://github.com/atykhonov/google-translate/issues/52
+  (defun google-translate--search-tkk () "Search TKK." (list 430675 2721866130))
+  (bind-keys*
+   ("\C-ct" . google-translate-at-point)
+   ("\C-cT" . google-translate-query-translate)))
+
 (provide 'init-global)
 
 ;;; init-global.el ends here
