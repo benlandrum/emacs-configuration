@@ -36,6 +36,9 @@
 ;; This does not seem to play well with visual line mode.
 ;; Consider disabling it here.
 (use-package org-noter
+  :config
+  (setq org-noter-auto-save-last-location t
+	org-noter-doc-split-fraction '(0.6 . 0.5))
   :bind ("M-i" . org-noter-insert-precise-note))
 
 (use-package org-roam
