@@ -21,7 +21,9 @@
   (unless vagrant-is-running
     (message "Starting Vagrant")
     (start-vagrant))
-  (find-file (format "/ssh:vagrant@%s:~" my-vagrant-vm-address)))
+  ;; Important: Switching from ssh to scp here made helm-find-files actually
+  ;; work for cloud VMs on AWS.
+  (find-file (format "/scp:vagrant@%s:~" my-vagrant-vm-address)))
 
 (provide 'init-vagrant)
 
