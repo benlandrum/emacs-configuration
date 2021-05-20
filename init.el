@@ -11,7 +11,7 @@
  my-org-format-latex-text-ratio 1.8
  my-org-roam-directory "~/org"
  my-minimum-emacs-version "27.1"
- my-tramp-debug t
+ my-tramp-verbose 5
  my-vagrant-vm-address "cloudvm"
  my-vagrant-vm-path "/Users/blandrum/beeswax/vms/cloudvm"
  debug-on-error nil

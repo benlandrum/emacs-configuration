@@ -12,7 +12,8 @@
   ;; Note: I had to pipx install pyls.
   (add-to-list 'tramp-remote-path "~/bin")
   (add-to-list 'tramp-remote-path "~/.local/bin")
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+  (when my-tramp-verbose (setq tramp-verbose my-tramp-verbose)))
 
 ;; flycheck is causing freezes.  I disabled it.  I also removed flymake.
 ;; Also, when TRAMP freezes, try tramp-cleanup-this-connection.
