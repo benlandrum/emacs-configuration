@@ -5,14 +5,15 @@
  my-custom-file "custom.el"
  my-init-file "~/.emacs.d/init.el"
  my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
- my-lsp-clients-clangd-executable "/ssh:vagrant@10.211.55.4#22:/usr/bin/clangd"
+ my-lsp-clients-clangd-executable "/ssh:cloudvm:/usr/bin/clangd"
  my-lsp-debug t
  my-org-directory "~/org"
  my-org-format-latex-text-ratio 1.8
  my-org-roam-directory "~/org"
  my-minimum-emacs-version "27.1"
- my-vagrant-vm-address "10.211.55.4#22"
- my-vagrant-vm-path "/Users/blandrum/beeswax/vms/serving"
+ my-tramp-debug t
+ my-vagrant-vm-address "cloudvm"
+ my-vagrant-vm-path "/Users/blandrum/beeswax/vms/cloudvm"
  debug-on-error nil
  )
 
