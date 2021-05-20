@@ -16,6 +16,9 @@
   (plist-put org-format-latex-options
 	     :scale my-org-format-latex-text-ratio)
 
+  ;; This requres dvipng.
+  ;; I installed this with tlmgr.
+
   ;; Sync LaTeX fragment scaling with text scaling.
   ;; https://emacs.stackexchange.com/questions/3387/how-to-enlarge-latex-fragments-in-org-mode-at-the-same-time-as-the-buffer-text
   (defun update-org-latex-fragments ()
