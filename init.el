@@ -6,12 +6,13 @@
  my-init-file "~/.emacs.d/init.el"
  my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
  my-lsp-clients-clangd-executable "/ssh:cloudvm:/usr/bin/clangd"
- my-lsp-debug t
+ my-lsp-debug nil
  my-org-directory "~/org"
  my-org-format-latex-text-ratio 1.8
  my-org-roam-directory "~/org"
  my-minimum-emacs-version "27.1"
- my-tramp-verbose 5
+ my-tramp-default-method "scp"
+ my-tramp-verbose 6
  my-vagrant-vm-address "cloudvm"
  my-vagrant-vm-path "/Users/blandrum/beeswax/vms/cloudvm"
  debug-on-error nil
