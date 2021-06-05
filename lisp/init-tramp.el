@@ -16,6 +16,11 @@
   (when my-tramp-verbose (setq tramp-verbose my-tramp-verbose))
   (setq tramp-default-method my-tramp-default-method))
 
+;; Example multi-hop paths.
+;; /ssh:vm-user@vm.example.net|docker:user@container:/path/to/file
+;; /sudo:root@localhost|docker:user@container:/path/to/file
+(use-package docker-tramp)
+
 ;; flycheck is causing freezes.  I disabled it.  I also removed flymake.
 ;; Also, when TRAMP freezes, try tramp-cleanup-this-connection.
 ;; https://stackoverflow.com/questions/23582421/emacs-tramp-hangs-on-saving-opening-a-current-buffer-after-suspend-resume
