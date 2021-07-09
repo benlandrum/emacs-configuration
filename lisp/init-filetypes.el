@@ -10,6 +10,8 @@
 (use-package bazel-mode)
 (use-package protobuf-mode)
 
+(add-to-list 'auto-mode-alist '("\\.txx\\'" . c++-mode))
+
 (provide 'init-filetypes)
 
 ;;; init-filetypes.el ends here
