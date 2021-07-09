@@ -36,6 +36,10 @@
 
 (use-package ox-gfm)
 
+;; For reading *.epub files in org-noter.
+(use-package nov)
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
 ;; This does not seem to play well with visual line mode.
 ;; Consider disabling it here.
 (use-package org-noter
