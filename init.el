@@ -45,7 +45,8 @@
   (require 'init-pdf)
   (require 'init-magit)
   (require 'init-org)
-  (require 'init-filetypes))
+  (require 'init-filetypes)
+  (require 'init-dashboard))
 
 ;; Remove this!
 (setq gc-cons-threshold (* 100 1024 1024)
