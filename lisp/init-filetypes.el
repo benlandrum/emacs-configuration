@@ -12,6 +12,11 @@
 
 (add-to-list 'auto-mode-alist '("\\.txx\\'" . c++-mode))
 
+(defun my-js-mode-hook ()
+  "Custom `js-mode' behavior."
+  (setq indent-tabs-mode nil))
+(add-hook 'js-mode-hook 'my-js-mode-hook)
+
 (provide 'init-filetypes)
 
 ;;; init-filetypes.el ends here
