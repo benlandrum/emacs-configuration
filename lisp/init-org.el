@@ -48,6 +48,7 @@
 	org-noter-doc-split-fraction '(0.6 . 0.5))
   :bind ("M-i" . org-noter-insert-precise-note))
 
+(setq org-roam-v2-ack t)
 (use-package org-roam
   :hook
   (after-init . org-roam-mode)
