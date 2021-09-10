@@ -7,7 +7,7 @@
  my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
  my-lsp-clients-clangd-executable "/ssh:cloudvm:/usr/bin/clangd"
  my-lsp-debug nil
- my-org-directory "~/org"
+ my-org-directory nil
  my-org-format-latex-text-ratio 1.8
  my-org-roam-directory "~/org"
  my-minimum-emacs-version "27.1"
