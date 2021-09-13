@@ -51,8 +51,6 @@
 
 (setq org-roam-v2-ack t)
 (use-package org-roam
-  :hook
-  (after-init . org-roam-mode)
   :custom
   (org-roam-directory my-org-roam-directory)
   :bind (:map org-roam-mode-map
