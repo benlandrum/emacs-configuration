@@ -11,6 +11,7 @@
  my-org-format-latex-text-ratio 1.8
  my-org-roam-directory "~/org"
  my-minimum-emacs-version "27.1"
+ my-quotes-path "~/.emacs.d/quotes.txt"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
  my-vagrant-vm-address "cloudvm"
