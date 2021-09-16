@@ -12,6 +12,11 @@
 
 (add-to-list 'auto-mode-alist '("\\.txx\\'" . c++-mode))
 
+(add-hook 'text-mode-hook
+          '(lambda ()
+             (setq indent-tabs-mode nil)
+             (setq tab-width 4)))
+
 (defun my-js-mode-hook ()
   "Custom `js-mode' behavior."
   (setq indent-tabs-mode nil))
