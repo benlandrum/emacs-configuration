@@ -9,6 +9,7 @@
 (use-package dockerfile-mode)
 (use-package bazel-mode)
 (use-package protobuf-mode)
+(use-package haskell-mode)
 
 (add-to-list 'auto-mode-alist '("\\.txx\\'" . c++-mode))
 
