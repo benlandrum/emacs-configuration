@@ -11,6 +11,14 @@
 (use-package protobuf-mode)
 (use-package haskell-mode)
 (use-package julia-mode)
+(use-package vterm)
+(use-package julia-snail
+  :requires vterm
+  :hook (julia-mode . julia-snail-mode)
+  :config
+  (add-to-list 'display-buffer-alist
+	       '("\\*julia" (display-buffer-reuse-window display-buffer-same-window)))
+  (set-variable 'split-height-threshold 15))
 
 (add-to-list 'auto-mode-alist '("\\.txx\\'" . c++-mode))
 
