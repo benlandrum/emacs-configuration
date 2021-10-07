@@ -10,6 +10,7 @@
 (use-package bazel-mode)
 (use-package protobuf-mode)
 (use-package haskell-mode)
+(use-package julia-mode)
 
 (add-to-list 'auto-mode-alist '("\\.txx\\'" . c++-mode))
 
