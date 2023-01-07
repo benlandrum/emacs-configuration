@@ -98,6 +98,14 @@
 	      :map org-mode-map
 	      (("C-c n i" . org-roam-insert))
 	      (("C-c n I" . org-roam-insert-immediate))))
+(use-package org-ref
+  :config
+  (require 'org-ref-helm))
+
+(use-package org-roam-bibtex
+  :after org-roam
+  :config
+  (require 'org-ref))
 
 (provide 'init-org)
 
