@@ -43,6 +43,9 @@
   :config
   (which-key-mode))
 
+;; Useful for switching between full-screen Org-noter frames.
+(global-set-key (kbd "C-x 5 n") 'select-frame-by-name)
+
 (defun revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
   (interactive) (revert-buffer t t))
