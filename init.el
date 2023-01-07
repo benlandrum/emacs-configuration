@@ -47,6 +47,7 @@
   (require 'init-magit)
   (require 'init-org)
   (require 'init-filetypes)
+  (require 'init-bib)
   (require 'init-dashboard))
 
 ;; Remove this!
