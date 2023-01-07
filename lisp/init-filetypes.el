@@ -11,6 +11,7 @@
 (use-package protobuf-mode)
 (use-package haskell-mode)
 (use-package julia-mode)
+(use-package terraform-mode)
 (use-package vterm)
 (use-package julia-snail
   :requires vterm
