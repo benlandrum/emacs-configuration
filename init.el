@@ -9,13 +9,15 @@
  my-lsp-debug nil
  my-org-directory nil
  my-org-format-latex-text-ratio 1.8
- my-org-roam-directory "~/org"
+ my-org-roam-directory "~/roam"
  my-minimum-emacs-version "27.1"
  my-quotes-path "~/.emacs.d/quotes.txt"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
  my-vagrant-vm-address "cloudvm"
  my-vagrant-vm-path "/Users/blandrum/beeswax/vms/cloudvm"
+ my-ebib-preload-bib-files (list "~/research/bibliography.bib")
+ my-bibtex-completion-bibliography "~/research/bibliography.bib"
  debug-on-error nil
  )
 
