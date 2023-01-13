@@ -7,6 +7,7 @@
 ;;; Code:
 
 (use-package org
+  :ensure t
   :config
   (setq org-cycle-emulate-tab nil
 	org-startup-indented t
@@ -62,6 +63,7 @@
             (lambda () (my-org-custom-id-get (point) 'create))))
 
 (use-package helm-org
+  :ensure t
   :config
   (add-to-list 'helm-completing-read-handlers-alist
 	       '(org-capture . helm-org-completing-read-tags))
@@ -82,27 +84,40 @@
 ;; This does not seem to play well with visual line mode.
 ;; Consider disabling it here.
 (use-package org-noter
+  :ensure t
   :config
   (setq org-noter-auto-save-last-location t
 	org-noter-doc-split-fraction '(0.6 . 0.5))
   :bind ("M-i" . org-noter-insert-precise-note))
 
-(setq org-roam-v2-ack t)
 (use-package org-roam
+  :after org
+  :ensure t
+  :init (setq org-roam-v2-ack t)
   :custom
   (org-roam-directory my-org-roam-directory)
-  :bind (:map org-roam-mode-map
-	      (("C-c n l" . org-roam)
-	       ("C-c n f" . org-roam-find-file)
-	       ("C-c n g" . org-roam-graph))
-	      :map org-mode-map
-	      (("C-c n i" . org-roam-insert))
-	      (("C-c n I" . org-roam-insert-immediate))))
+  :bind (("C-c n f" . org-roam-node-find)
+	 ("C-c n r" . org-roam-node-random)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n c" . org-roam-capture)
+         ("C-c n j" . org-roam-dailies-capture-today)
+	 (:map org-mode-map
+	       (("C-c n i" . org-roam-node-insert)
+		("C-c n o" . org-id-get-create)
+		("C-c n t" . org-roam-tag-add)
+		("C-c n a" . org-roam-alias-add)
+		("C-c n l" . org-roam-buffer-toggle))))
+  :config
+  (org-roam-setup)
+  (org-roam-db-autosync-mode))
+
 (use-package org-ref
+  :ensure t
   :config
   (require 'org-ref-helm))
 
 (use-package org-roam-bibtex
+  :ensure t
   :after org-roam
   :config
   (require 'org-ref))
