@@ -90,6 +90,14 @@
 	org-noter-doc-split-fraction '(0.6 . 0.5))
   :bind ("M-i" . org-noter-insert-precise-note))
 
+
+(defun my-org-roam-directory-set-relative (path)
+  "Used by .dir-locals.el files to set org-roam-directory to a PATH relative to the .dir-locals file."
+  (setq-local org-roam-directory
+	      (concat (file-name-as-directory
+		       (locate-dominating-file default-directory ".dir-locals.el"))
+		      (file-name-as-directory path))))
+
 (use-package org-roam
   :after org
   :ensure t
