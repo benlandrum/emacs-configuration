@@ -6,7 +6,6 @@
 ;;; Code:
 
 (use-package helm
-  :ensure t
   :config
   (helm-mode)
   (define-key global-map [remap find-file] #'helm-find-files)
@@ -14,7 +13,6 @@
   (define-key global-map [remap switch-to-buffer] #'helm-mini))
 
 (use-package helm-bibtex
-  :ensure t
   :config
   (setq bibtex-completion-bibliography (list my-bibtex-completion-bibliography))
   :bind (("C-c n B" . helm-bibtex)))

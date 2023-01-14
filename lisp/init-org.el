@@ -7,7 +7,6 @@
 ;;; Code:
 
 (use-package org
-  :ensure t
   :config
   (setq org-cycle-emulate-tab nil
 	org-startup-indented t
@@ -63,7 +62,6 @@
             (lambda () (my-org-custom-id-get (point) 'create))))
 
 (use-package helm-org
-  :ensure t
   :config
   (add-to-list 'helm-completing-read-handlers-alist
 	       '(org-capture . helm-org-completing-read-tags))
@@ -84,7 +82,6 @@
 ;; This does not seem to play well with visual line mode.
 ;; Consider disabling it here.
 (use-package org-noter
-  :ensure t
   :config
   (setq org-noter-auto-save-last-location t
 	org-noter-doc-split-fraction '(0.6 . 0.5))
@@ -99,7 +96,6 @@
 
 (use-package org-roam
   :after org
-  :ensure t
   :init (setq org-roam-v2-ack t)
   :custom
   (org-roam-directory my-org-roam-directory)
@@ -124,12 +120,10 @@
   (org-roam-db-autosync-mode))
 
 (use-package org-ref
-  :ensure t
   :config
   (require 'org-ref-helm))
 
 (use-package org-roam-bibtex
-  :ensure t
   :after org-roam
   :config
   (require 'org-ref))
