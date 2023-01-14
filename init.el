@@ -16,7 +16,8 @@
  my-tramp-verbose 6
  my-vagrant-vm-address "cloudvm"
  my-vagrant-vm-path "/Users/blandrum/beeswax/vms/cloudvm"
- my-ebib-preload-bib-files (list "~/research/bibliography.bib")
+ my-ebib-bib-search-dirs (list "~/research")
+ my-ebib-preload-bib-files (list "bibliography.bib")
  my-bibtex-completion-bibliography "~/research/bibliography.bib"
  debug-on-error nil
  )

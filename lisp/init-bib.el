@@ -15,6 +15,7 @@
 	 (:map biblio-selection-mode-map
 	       ("e" . ebib-biblio-selection-import)))
   :config
+  (setq ebib-bib-search-dirs my-ebib-bib-search-dirs)
   (setq ebib-preload-bib-files my-ebib-preload-bib-files))
 
 (provide 'init-bib)
