@@ -90,9 +90,8 @@
 	org-noter-doc-split-fraction '(0.6 . 0.5))
   :bind ("M-i" . org-noter-insert-precise-note))
 
-
 (defun my-org-roam-directory-set-relative (path)
-  "Used by .dir-locals.el files to set org-roam-directory to a PATH relative to the .dir-locals file."
+  "Used by .dir-locals.el files to set org-roam-directory to a PATH relative to the .dir-locals.el file."
   (setq-local org-roam-directory
 	      (concat (file-name-as-directory
 		       (locate-dominating-file default-directory ".dir-locals.el"))
@@ -104,6 +103,11 @@
   :init (setq org-roam-v2-ack t)
   :custom
   (org-roam-directory my-org-roam-directory)
+  (org-roam-dailies-capture-templates
+   '(("d" "default" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))))
   :bind (("C-c n f" . org-roam-node-find)
 	 ("C-c n r" . org-roam-node-random)
          ("C-c n g" . org-roam-graph)
