@@ -2,24 +2,26 @@
 
 ;; Global variables
 (setq
+ debug-on-error nil
+ my-bibtex-completion-bibliography "~/research/bibliography.bib"
  my-custom-file "custom.el"
- my-init-file "~/.emacs.d/init.el"
+ my-dropbox-reading-directory "~/Dropbox/reading"
+ my-ebib-bib-search-dirs (list "~/research")
+ my-ebib-file-search-dirs (list "~/research/reading")
+ my-ebib-preload-bib-files (list "bibliography.bib")
  my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
+ my-init-file "~/.emacs.d/init.el"
  my-lsp-clients-clangd-executable "/ssh:cloudvm:/usr/bin/clangd"
  my-lsp-debug nil
+ my-minimum-emacs-version "27.1"
  my-org-directory nil
  my-org-format-latex-text-ratio 1.8
  my-org-roam-directory "~/roam"
- my-minimum-emacs-version "27.1"
  my-quotes-path "~/.emacs.d/quotes.txt"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
  my-vagrant-vm-address "cloudvm"
  my-vagrant-vm-path "/Users/blandrum/beeswax/vms/cloudvm"
- my-ebib-bib-search-dirs (list "~/research")
- my-ebib-preload-bib-files (list "bibliography.bib")
- my-bibtex-completion-bibliography "~/research/bibliography.bib"
- debug-on-error nil
  )
 
 ;;; Commentary:
