@@ -80,6 +80,10 @@
 (use-package helm-bibtex
   :config
   (setq bibtex-completion-bibliography (list my-bibtex-completion-bibliography))
+  (setq bibtex-completion-library-path (list my-bibtex-completion-library-path))
+  (setq bibtex-completion-notes-path my-bibtex-completion-notes-path)
+  ;; Prefer the file field in the BibLaTeX file to the file in the directory with the same name.
+  (setq bibtex-completion-pdf-field "file")
   :bind (("C-c n B" . helm-bibtex)))
 
 (provide 'init-bib)

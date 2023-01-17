@@ -4,6 +4,8 @@
 (setq
  debug-on-error nil
  my-bibtex-completion-bibliography "~/research/bibliography.bib"
+ my-bibtex-completion-library-path "~/research/reading"
+ my-bibtex-completion-notes-path "~/research/org/reading"
  my-custom-file "custom.el"
  my-dropbox-reading-directory "~/Dropbox/reading"
  my-ebib-bib-search-dirs (list "~/research")
