@@ -12,11 +12,6 @@
   (define-key global-map [remap execute-extended-command] #'helm-M-x)
   (define-key global-map [remap switch-to-buffer] #'helm-mini))
 
-(use-package helm-bibtex
-  :config
-  (setq bibtex-completion-bibliography (list my-bibtex-completion-bibliography))
-  :bind (("C-c n B" . helm-bibtex)))
-
 (use-package helm-xref)
 
 (provide 'init-helm)

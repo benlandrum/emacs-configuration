@@ -5,7 +5,9 @@
 
 ;;; Code:
 
-(use-package biblio)
+(use-package biblio
+  :config
+  (setq biblio-bibtex-use-autokey t))
 
 ;; TODO: Fix automatic entries with name conflicts (happens with year-only keys).
 ;; TODO: Always use the title for the autokeys.
@@ -17,6 +19,7 @@
 	 (:map biblio-selection-mode-map
 	       ("e" . ebib-biblio-selection-import)))
   :config
+  (setq ebib-autogenerate-keys nil)
   (setq ebib-bib-search-dirs my-ebib-bib-search-dirs)
   (setq ebib-preload-bib-files my-ebib-preload-bib-files)
   (setq ebib-file-search-dirs my-ebib-file-search-dirs))
@@ -73,5 +76,10 @@
       (0 (error "[my] Import failed: no files matching %s" key))
       (2 (error "[my] Import failed: multiple files matching %s: %s" key matching-files))
       (1 (my--ebib-import-file t (car matching-files))))))
+
+(use-package helm-bibtex
+  :config
+  (setq bibtex-completion-bibliography (list my-bibtex-completion-bibliography))
+  :bind (("C-c n B" . helm-bibtex)))
 
 (provide 'init-bib)
