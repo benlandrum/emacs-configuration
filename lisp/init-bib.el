@@ -86,4 +86,14 @@
   (setq bibtex-completion-pdf-field "file")
   :bind (("C-c n B" . helm-bibtex)))
 
+;; Watch directories in case we add new files.
+(setq my-helm-bibtex-library-watch
+      (file-notify-add-watch my-bibtex-completion-library-path
+                             '(change)
+                             (lambda (event) (bibtex-completion-candidates))))
+(setq my-helm-bibtex-notes-watch
+      (file-notify-add-watch my-bibtex-completion-notes-path
+                             '(change)
+                             (lambda (event) (bibtex-completion-candidates))))
+
 (provide 'init-bib)
