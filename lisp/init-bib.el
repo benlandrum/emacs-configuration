@@ -2,6 +2,7 @@
 
 ;;; Commentary:
 ;; Customize bibliographic import and paths.
+;; Provide import functionality for working with PDFs/EPUBs on Dropbox.
 
 ;;; Code:
 
@@ -59,9 +60,8 @@
                                                          (ebib--list-dependents ebib--cur-db)))
         (ebib--update-entry-buffer)))))
 
-;; TODO: Enable epub and other formats.
 (defun my--files-matching-key-recursive (root key)
-  "Get all files with names matching a BibTeX KEY within a ROOT directory."
+  "Get all PDF and EPUB files with names matching a BibTeX KEY within a ROOT directory."
   (append (directory-files-recursively root (concat (regexp-quote key) "\\.\\(pdf\\|epub\\)") nil t t)))
 
 ;; TODO: Restrict to ebib-mode.
