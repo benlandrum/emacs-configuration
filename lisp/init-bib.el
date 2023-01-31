@@ -23,7 +23,9 @@
   (setq ebib-autogenerate-keys nil)
   (setq ebib-bib-search-dirs my-ebib-bib-search-dirs)
   (setq ebib-preload-bib-files my-ebib-preload-bib-files)
-  (setq ebib-file-search-dirs my-ebib-file-search-dirs))
+  (setq ebib-file-search-dirs my-ebib-file-search-dirs)
+  ;; Open files within Emacs rather than calling xpdf or gv.
+  (setq ebib-file-associations nil))
 
 ;; TODO: Request a way to supply a file name argument without a command prompt.
 ;;       For now just copying the function from ebib.el.
