@@ -18,7 +18,7 @@
  my-minimum-emacs-version "27.1"
  my-org-directory nil
  my-org-format-latex-text-ratio 1.8
- my-org-roam-directory "~/roam"
+ my-org-roam-directory "~/research/org/roam"
  my-quotes-path "~/.emacs.d/quotes.txt"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
