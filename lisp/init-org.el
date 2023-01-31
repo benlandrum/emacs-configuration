@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(use-package org-fragtog)
+
 (use-package org
   :config
   (setq org-cycle-emulate-tab nil
@@ -29,7 +31,9 @@
 			 text-scale-mode-amount))
     (org-latex-preview '(16)))
   (add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
+
   (add-hook 'org-mode-hook #'visual-line-mode)
+  (add-hook 'org-mode-hook 'org-fragtog-mode)
 
   ;; https://writequit.org/articles/emacs-org-mode-generate-ids.html
   (defun my-org-custom-id-get (&optional pom create prefix)
@@ -127,6 +131,8 @@
   :after org-roam
   :config
   (require 'org-ref))
+
+(use-package ox-reveal)
 
 (provide 'init-org)
 
