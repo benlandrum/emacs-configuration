@@ -79,6 +79,26 @@
       (2 (error "[my] Import failed: multiple files matching %s: %s" key matching-files))
       (1 (my--ebib-import-file t (car matching-files))))))
 
+;; TODO: Restrict to ebib-mode.
+;; TODO: Handle empty .bib file.
+;; TODO: Eliminate beep on last entry.
+;; TODO: Eliminate kill ring pollution.
+(defun my-ebib-iterate-entries ()
+  "Iterate through the ebib entries."
+  (interactive)
+  (ebib-goto-first-entry)
+  ;; Iterate by comparing keys after advancing.
+  ;; Stop when keys are equal.
+  (let ((last-entry nil)
+	(entry))
+    (ebib-copy-key-as-kill)
+    (setq entry (car kill-ring))
+    (while (not (eq last-entry entry))
+      (ebib-next-entry)
+      (setq last-entry entry)
+      (ebib-copy-key-as-kill)
+      (setq entry (car kill-ring)))))
+
 (use-package helm-bibtex
   :config
   (setq bibtex-completion-bibliography (list my-bibtex-completion-bibliography))
