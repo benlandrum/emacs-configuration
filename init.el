@@ -5,6 +5,7 @@
  debug-on-error nil
  my-bib-file "~/research/bibliography.bib"
  my-bib-file-dir "~/research/reading"
+ my-bib-notes-dir "~/research/org/reading"
  my-bibtex-completion-bibliography "~/research/bibliography.bib"
  my-bibtex-completion-library-path "~/research/reading"
  my-bibtex-completion-notes-path "~/research/org/reading"

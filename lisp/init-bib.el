@@ -136,8 +136,43 @@
   (let ((files (directory-files my-bib-file-dir nil "^[^.]")))
     (-difference files (my--all-files))))
 
-(defun my-bib-set-notes ()
-  "Set notes on bib file based on the contents of the relevant org directory.")
+;; TODO: Check all attached file names against patterns, including key.
+;; TODO: Check all attached files in the expected directory.
+;; TODO: Check primary attached file is textual.
+;; TODO: Check file name legality according to allowed strings in bib keys.
+;; TODO: Check strings in bib keys.
+
+(defvar my--bib-file-text-extensions '("pdf" "epub" "mobi")
+  "List of possible extensions for text files associated with bib entries.")
+
+(defvar my--bib-file-supplemental-extensions '("zip")
+  "List of possible extensions for supplemental files associated with bib entries.")
+
+(defvar my--bib-file-movie-extensions '("mp4")
+  "List of possible extensions for movies associated with bib entries.")
+
+(defvar my--bib-file-pattern-alist '(("supplemental" . "_supplemental$")
+				     ("movie" . "-movie.*$")
+				     ("corrigendum" . "-corrigendum$")
+				     ("text" . ".+"))
+  "Ordered association list of pairs (TYPE . PATTERN) where TYPE is the attached file type and PATTERN is the allowed file name pattern.")
+
+;; We might want to group this with the alist above.
+(defvar my--bib-file-extension-alist '(("supplemental" . my--bib-file-supplemental-extensions)
+				       ("movie" . my--bib-file-movie-extensions)
+				       ("corrigendum" . my--bib-file-text-extensions)
+				       ("text" . my--bib-file-text-extensions))
+  "Association list of pairs (TYPE . LIST) where TYPE is the attaced file type and LIST is the list of allowed file types.")
+
+(defun my--bib-notes-file-to-entry (file)
+  "Return the expected bib entry for the given FILE, nil otherwise. Used to enforce assumptions on file names."
+  (let ((extension (file-name-extension file))
+	(name (file-name-sans-extension file)))))
+
+(defun my-bib-unregistered-notes ()
+  "Return a list of files in the notes directory not registered with a bib entry."
+  (let ((org-files (directory-files my-bib-notes-dir nil "\.org$")))
+    (-difference (org-files) (my--bib-all-entries))))
 
 ;; TODO: Restrict to ebib-mode.
 ;; TODO: Handle empty .bib file.
