@@ -10,6 +10,12 @@
   :config
   (setq biblio-bibtex-use-autokey t))
 
+;; For list filtering, etc.
+(use-package dash)
+
+;; For field extraction.
+(use-package parsebib)
+
 ;; TODO: Fix automatic entries with name conflicts (happens with year-only keys).
 ;; TODO: Always use the title for the autokeys.
 ;;       See http://www.jonathanleroux.org/bibtex-mode.html.
@@ -78,6 +84,47 @@
       (0 (error "[my] Import failed: no files matching %s" key))
       (2 (error "[my] Import failed: multiple files matching %s: %s" key matching-files))
       (1 (my--ebib-import-file t (car matching-files))))))
+
+(defun my--bib-contents ()
+  "Parse the global bib file into a hash table mapping bib key to properties...here just the file."
+  (parsebib-parse my-bib-file :fields '("file")))
+
+(defun my--bib-entry-file-string-to-list (string)
+  "Split a semicolon-and-space-delimited string into a list of strings."
+  ;; This is just split-string-default-separators with a semicolon.
+  (split-string string "[ \f\t\n\r\v;]+" t))
+
+(defun my--bib-entry-file-exists (file)
+  "Search in the default flat bibliography file paths for the given file, returning t for found and nil for not."
+  (file-exists-p (concat (file-name-as-directory my-bib-file-dir) file)))
+
+(defun my--bib-entry-file-string (key table)
+  "Return the (first) file string for a given bib entry, otherwise empty."
+  (let ((values (-filter (lambda (kv) (string= (car kv) "file"))
+			 (gethash key table))))
+    (cl-case (length values)
+      (0 "")
+      (1 (cdr (car values)))
+      (t (error "[my] Multiple file strings found")))))
+
+;; TODO: Consider returning cons cells.
+(defun my--bib-entry-to-pair-list (key table)
+  "Assume that the car of the value is file. Return flattened key-file pairs."
+  (let* ((files-string (my--bib-entry-file-string key table))
+	 (files (my--bib-entry-file-string-to-list files-string)))
+    (mapcar (lambda (file) (list key file)) files)))
+
+(defun my--all-file-kvs ()
+  "For testing, return all key-file pairs."
+  (let ((bib (my--bib-contents)))
+    (apply #'append (mapcar (lambda (key) (my--bib-entry-to-pair-list key bib))
+			    (hash-table-keys bib)))))
+
+(defun my-bib-missing-files ()
+  "Return a list of pairs of key-file pairs to indicate files in .bib file that cannot be found."
+  (-filter (lambda (f)
+	     (not (my--bib-entry-file-exists (car (cdr f)))))
+	   (my--all-file-kvs)))
 
 ;; TODO: Restrict to ebib-mode.
 ;; TODO: Handle empty .bib file.
