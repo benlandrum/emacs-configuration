@@ -31,7 +31,8 @@
   (setq ebib-preload-bib-files my-ebib-preload-bib-files)
   (setq ebib-file-search-dirs my-ebib-file-search-dirs)
   ;; Open files within Emacs rather than calling xpdf or gv.
-  (setq ebib-file-associations nil))
+  (setq ebib-file-associations nil)
+  (setq ebib-notes-directory my-bib-notes-dir))
 
 ;; TODO: Request a way to supply a file name argument without a command prompt.
 ;;       For now just copying the function from ebib.el.
@@ -134,6 +135,9 @@
   "Return a list of files in the reading location not connected to a bib entry."
   (let ((files (directory-files my-bib-file-dir nil "^[^.]")))
     (-difference files (my--all-files))))
+
+(defun my-bib-set-notes ()
+  "Set notes on bib file based on the contents of the relevant org directory.")
 
 ;; TODO: Restrict to ebib-mode.
 ;; TODO: Handle empty .bib file.
