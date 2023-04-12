@@ -115,16 +115,25 @@
     (mapcar (lambda (file) (list key file)) files)))
 
 (defun my--all-file-kvs ()
-  "For testing, return all key-file pairs."
+  "Return all key-file pairs."
   (let ((bib (my--bib-contents)))
     (apply #'append (mapcar (lambda (key) (my--bib-entry-to-pair-list key bib))
 			    (hash-table-keys bib)))))
+
+(defun my--all-files ()
+  "Return all files in the bib file."
+  (mapcar (lambda (kv) (car (cdr kv))) (my--all-file-kvs)))
 
 (defun my-bib-missing-files ()
   "Return a list of pairs of key-file pairs to indicate files in .bib file that cannot be found."
   (-filter (lambda (f)
 	     (not (my--bib-entry-file-exists (car (cdr f)))))
 	   (my--all-file-kvs)))
+
+(defun my-reading-files-missing-entries ()
+  "Return a list of files in the reading location not connected to a bib entry."
+  (let ((files (directory-files my-bib-file-dir nil "^[^.]")))
+    (-difference files (my--all-files))))
 
 ;; TODO: Restrict to ebib-mode.
 ;; TODO: Handle empty .bib file.
