@@ -98,6 +98,14 @@
 		       (locate-dominating-file default-directory ".dir-locals.el"))
 		      (file-name-as-directory path))))
 
+(defun my-org-file-to-cite-property ()
+  "Interpret the file name as a citation key, and add it as a :ROAM_REFS: citation."
+  (interactive)
+  (beginning-of-buffer)
+  (org-set-property "ROAM_REFS"
+		    (concat "cite:"
+			    (string-remove-suffix ".org" (buffer-name)))))
+
 (use-package org-roam
   :after org
   :init (setq org-roam-v2-ack t)
