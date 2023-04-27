@@ -3,6 +3,7 @@
 ;; Global variables
 (setq
  debug-on-error nil
+ my-asymptote-dir "/usr/local/share/asymptote"
  my-bib-file "~/research/bibliography.bib"
  my-bib-file-dir "~/research/reading"
  my-bib-notes-dir "~/research/org/reading"
