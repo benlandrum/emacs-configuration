@@ -3,6 +3,8 @@
 ;;; Commentary:
 ;; Customize bibliographic import and paths.
 ;; Provide import functionality for working with PDFs/EPUBs on Dropbox.
+;; To complete a citation, type `C-M-i` for completion-at-point.
+;; To get a context menu on one, use embark with `C-.`.
 
 ;;; Code:
 
