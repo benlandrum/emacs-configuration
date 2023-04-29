@@ -34,7 +34,7 @@
   (setq ebib-autogenerate-keys nil)
   (setq ebib-bib-search-dirs (list my-research-dir))
   (setq ebib-preload-bib-files (list my-bib-file))
-  (setq ebib-file-search-dirs (list my-bib-files-dir))
+  (setq ebib-file-search-dirs (list my-bib-file-dir))
   ;; Open files within Emacs rather than calling xpdf or gv.
   (setq ebib-file-associations nil)
   (setq ebib-notes-directory my-bib-notes-dir))
