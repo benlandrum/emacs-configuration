@@ -199,25 +199,6 @@
       (ebib-copy-key-as-kill)
       (setq entry (car kill-ring)))))
 
-(use-package helm-bibtex
-  :config
-  (setq bibtex-completion-bibliography (list my-bib-path))
-  (setq bibtex-completion-library-path (list my-bib-library-dir))
-  (setq bibtex-completion-notes-path my-bib-notes-dir)
-  ;; Prefer the file field in the BibLaTeX file to the file in the directory with the same name.
-  (setq bibtex-completion-pdf-field "file")
-  :bind (("C-c n B" . helm-bibtex)))
-
-;; Watch directories in case we add new files.
-(setq my-helm-bibtex-library-watch
-      (file-notify-add-watch my-bib-library-dir
-                             '(change)
-                             (lambda (event) (bibtex-completion-candidates))))
-(setq my-helm-bibtex-notes-watch
-      (file-notify-add-watch my-bib-notes-dir
-                             '(change)
-                             (lambda (event) (bibtex-completion-candidates))))
-
 (use-package citar
   :custom
   (citar-bibliography my-bib-path)
@@ -231,5 +212,8 @@
   :after citar embark
   :no-require
   :config (citar-embark-mode))
+
+(use-package org-roam-bibtex
+  :after org-roam)
 
 (provide 'init-bib)

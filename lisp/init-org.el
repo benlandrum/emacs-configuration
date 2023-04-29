@@ -65,14 +65,6 @@
   (add-hook 'org-capture-prepare-finalize-hook
             (lambda () (my-org-custom-id-get (point) 'create))))
 
-(use-package helm-org
-  :config
-  (add-to-list 'helm-completing-read-handlers-alist
-	       '(org-capture . helm-org-completing-read-tags))
-  (add-to-list 'helm-completing-read-handlers-alist
-	       '(org-set-tags . helm-org-completing-read-tags)))
-(use-package helm-org-rifle)
-
 ;; Not technically org, but I always use this through org.
 ;; "C-c C-e h o" renders to my browser with syntax highlighting with this.
 (use-package htmlize)
@@ -130,15 +122,6 @@
   :config
   (org-roam-setup)
   (org-roam-db-autosync-mode))
-
-(use-package org-ref
-  :config
-  (require 'org-ref-helm))
-
-(use-package org-roam-bibtex
-  :after org-roam
-  :config
-  (require 'org-ref))
 
 (use-package ox-reveal)
 

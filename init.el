@@ -49,7 +49,7 @@
   (require 'init-platform)
   (require 'init-appearance)
   (require 'init-dired)
-  (require 'init-helm)
+  (require 'init-completion)
   (require 'init-tramp)
   (require 'init-treemacs)
   (require 'init-lsp)
