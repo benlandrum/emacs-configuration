@@ -214,6 +214,9 @@
   :config (citar-embark-mode))
 
 (use-package org-roam-bibtex
-  :after org-roam)
+  :after org-roam
+  :config
+  (org-roam-bibtex-mode 1)
+  (setq orb-roam-ref-format 'org-cite))
 
 (provide 'init-bib)
