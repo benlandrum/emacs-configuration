@@ -17,17 +17,18 @@
  my-ebib-preload-bib-files (list "bibliography.bib")
  my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
  my-init-file "~/.emacs.d/init.el"
- my-lsp-clients-clangd-executable "/ssh:cloudvm:/usr/bin/clangd"
+ my-lsp-clients-clangd-executable "/ssh:privatecloudvm:/usr/bin/clangd"
  my-lsp-debug nil
  my-minimum-emacs-version "27.1"
+ my-org-cite-global-bibliography (list "~/research/bibliography.bib")
  my-org-directory nil
  my-org-format-latex-text-ratio 1.8
  my-org-roam-directory "~/research/org/roam"
  my-quotes-path "~/.emacs.d/quotes.txt"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
- my-vagrant-vm-address "cloudvm"
- my-vagrant-vm-path "/Users/blandrum/beeswax/vms/cloudvm"
+ my-vagrant-vm-address "privatecloudvm"
+ my-vagrant-vm-path "/Users/blandrum/beeswax/vms/privatecloudvm"
  )
 
 ;;; Commentary:
@@ -46,8 +47,10 @@
       (debug-on-error t)
       (debug-on-quit t))
   (require 'init-global)
+  (require 'init-embark)
   (require 'init-platform)
   (require 'init-appearance)
+  (require 'init-edit)
   (require 'init-dired)
   (require 'init-helm)
   (require 'init-tramp)

@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(setq org-cite-global-bibliography my-org-cite-global-bibliography)
+
 (use-package biblio
   :config
   (setq biblio-bibtex-use-autokey t))
@@ -212,5 +214,18 @@
       (file-notify-add-watch my-bibtex-completion-notes-path
                              '(change)
                              (lambda (event) (bibtex-completion-candidates))))
+
+(use-package citar
+  :custom
+  (citar-bibliography my-bib-file)
+  (citar-notes-paths (list my-bib-notes-dir))
+  :hook
+  (LaTeX-mode . citar-capf-setup)
+  (org-mode . citar-capf-setup))
+
+(use-package citar-embark
+  :after citar embark
+  :no-require
+  :config (citar-embark-mode))
 
 (provide 'init-bib)
