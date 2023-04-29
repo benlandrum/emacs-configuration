@@ -25,7 +25,7 @@
 ;; Derived global variables.
 (setq my-org-dir (concat (file-name-as-directory my-research-dir) "org"))
 (setq my-bib-path (concat (file-name-as-directory my-research-dir) my-bib-file))
-(setq my-bib-file-dir (concat (file-name-as-directory my-research-dir) "reading"))
+(setq my-bib-library-dir (concat (file-name-as-directory my-research-dir) "reading"))
 (setq my-bib-notes-dir (concat (file-name-as-directory my-org-dir) "reading"))
 (setq my-org-roam-directory (concat (file-name-as-directory my-org-dir) "roam"))
 

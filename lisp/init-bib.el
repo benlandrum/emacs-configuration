@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;; Derive paths.
-(setq org-cite-global-bibliography (list my-bib-file))
+(setq org-cite-global-bibliography (list my-bib-path))
 
 (use-package biblio
   :config
@@ -34,7 +34,7 @@
   (setq ebib-autogenerate-keys nil)
   (setq ebib-bib-search-dirs (list my-research-dir))
   (setq ebib-preload-bib-files (list my-bib-file))
-  (setq ebib-file-search-dirs (list my-bib-file-dir))
+  (setq ebib-file-search-dirs (list my-bib-library-dir))
   ;; Open files within Emacs rather than calling xpdf or gv.
   (setq ebib-file-associations nil)
   (setq ebib-notes-directory my-bib-notes-dir))
@@ -102,7 +102,7 @@
 
 (defun my--bib-entry-file-exists (file)
   "Search in the default flat bibliography file paths for the given file, returning t for found and nil for not."
-  (file-exists-p (concat (file-name-as-directory my-bib-file-dir) file)))
+  (file-exists-p (concat (file-name-as-directory my-bib-library-dir) file)))
 
 (defun my--bib-entry-file-string (key table)
   "Return the (first) file string for a given bib entry, otherwise empty."
@@ -138,7 +138,7 @@
 
 (defun my-reading-files-missing-entries ()
   "Return a list of files in the reading location not connected to a bib entry."
-  (let ((files (directory-files my-bib-file-dir nil "^[^.]")))
+  (let ((files (directory-files my-bib-library-dir nil "^[^.]")))
     (-difference files (my--all-files))))
 
 ;; TODO: Check all attached file names against patterns, including key.
@@ -202,7 +202,7 @@
 (use-package helm-bibtex
   :config
   (setq bibtex-completion-bibliography (list my-bib-path))
-  (setq bibtex-completion-library-path (list my-bib-file-dir))
+  (setq bibtex-completion-library-path (list my-bib-library-dir))
   (setq bibtex-completion-notes-path my-bib-notes-dir)
   ;; Prefer the file field in the BibLaTeX file to the file in the directory with the same name.
   (setq bibtex-completion-pdf-field "file")
@@ -210,7 +210,7 @@
 
 ;; Watch directories in case we add new files.
 (setq my-helm-bibtex-library-watch
-      (file-notify-add-watch my-bib-file-dir
+      (file-notify-add-watch my-bib-library-dir
                              '(change)
                              (lambda (event) (bibtex-completion-candidates))))
 (setq my-helm-bibtex-notes-watch
@@ -221,6 +221,7 @@
 (use-package citar
   :custom
   (citar-bibliography my-bib-path)
+  (citar-library-paths (list my-bib-library-dir))
   (citar-notes-paths (list my-bib-notes-dir))
   :hook
   (LaTeX-mode . citar-capf-setup)
