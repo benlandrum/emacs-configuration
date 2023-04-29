@@ -8,7 +8,8 @@
 
 ;;; Code:
 
-(setq org-cite-global-bibliography my-org-cite-global-bibliography)
+;; Derive paths.
+(setq org-cite-global-bibliography (list my-bib-file))
 
 (use-package biblio
   :config
@@ -31,9 +32,9 @@
 	       ("e" . ebib-biblio-selection-import)))
   :config
   (setq ebib-autogenerate-keys nil)
-  (setq ebib-bib-search-dirs my-ebib-bib-search-dirs)
-  (setq ebib-preload-bib-files my-ebib-preload-bib-files)
-  (setq ebib-file-search-dirs my-ebib-file-search-dirs)
+  (setq ebib-bib-search-dirs (list my-research-dir))
+  (setq ebib-preload-bib-files (list my-bib-file))
+  (setq ebib-file-search-dirs (list my-bib-files-dir))
   ;; Open files within Emacs rather than calling xpdf or gv.
   (setq ebib-file-associations nil)
   (setq ebib-notes-directory my-bib-notes-dir))
@@ -92,7 +93,7 @@
 
 (defun my--bib-contents ()
   "Parse the global bib file into a hash table mapping bib key to properties...here just the file."
-  (parsebib-parse my-bib-file :fields '("file")))
+  (parsebib-parse my-bib-path :fields '("file")))
 
 (defun my--bib-entry-file-string-to-list (string)
   "Split a semicolon-and-space-delimited string into a list of strings."
@@ -200,26 +201,26 @@
 
 (use-package helm-bibtex
   :config
-  (setq bibtex-completion-bibliography (list my-bibtex-completion-bibliography))
-  (setq bibtex-completion-library-path (list my-bibtex-completion-library-path))
-  (setq bibtex-completion-notes-path my-bibtex-completion-notes-path)
+  (setq bibtex-completion-bibliography (list my-bib-path))
+  (setq bibtex-completion-library-path (list my-bib-file-dir))
+  (setq bibtex-completion-notes-path my-bib-notes-dir)
   ;; Prefer the file field in the BibLaTeX file to the file in the directory with the same name.
   (setq bibtex-completion-pdf-field "file")
   :bind (("C-c n B" . helm-bibtex)))
 
 ;; Watch directories in case we add new files.
 (setq my-helm-bibtex-library-watch
-      (file-notify-add-watch my-bibtex-completion-library-path
+      (file-notify-add-watch my-bib-file-dir
                              '(change)
                              (lambda (event) (bibtex-completion-candidates))))
 (setq my-helm-bibtex-notes-watch
-      (file-notify-add-watch my-bibtex-completion-notes-path
+      (file-notify-add-watch my-bib-notes-dir
                              '(change)
                              (lambda (event) (bibtex-completion-candidates))))
 
 (use-package citar
   :custom
-  (citar-bibliography my-bib-file)
+  (citar-bibliography my-bib-path)
   (citar-notes-paths (list my-bib-notes-dir))
   :hook
   (LaTeX-mode . citar-capf-setup)

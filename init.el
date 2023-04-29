@@ -4,32 +4,30 @@
 (setq
  debug-on-error nil
  my-asymptote-dir "/usr/local/share/asymptote"
- my-bib-file "~/research/bibliography.bib"
- my-bib-file-dir "~/research/reading"
- my-bib-notes-dir "~/research/org/reading"
- my-bibtex-completion-bibliography "~/research/bibliography.bib"
- my-bibtex-completion-library-path "~/research/reading"
- my-bibtex-completion-notes-path "~/research/org/reading"
+ my-bib-file "bibliography.bib"
  my-custom-file "custom.el"
  my-dropbox-reading-directory "~/Dropbox/reading"
- my-ebib-bib-search-dirs (list "~/research")
- my-ebib-file-search-dirs (list "~/research/reading")
- my-ebib-preload-bib-files (list "bibliography.bib")
  my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
  my-init-file "~/.emacs.d/init.el"
  my-lsp-clients-clangd-executable "/ssh:privatecloudvm:/usr/bin/clangd"
  my-lsp-debug nil
  my-minimum-emacs-version "27.1"
- my-org-cite-global-bibliography (list "~/research/bibliography.bib")
  my-org-directory nil
  my-org-format-latex-text-ratio 1.8
- my-org-roam-directory "~/research/org/roam"
  my-quotes-path "~/.emacs.d/quotes.txt"
+ my-research-dir "~/research"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
  my-vagrant-vm-address "privatecloudvm"
  my-vagrant-vm-path "/Users/blandrum/beeswax/vms/privatecloudvm"
  )
+
+;; Derived global variables.
+(setq my-org-dir (concat (file-name-as-directory my-research-dir) "org"))
+(setq my-bib-path (concat (file-name-as-directory my-research-dir) my-bib-file))
+(setq my-bib-file-dir (concat (file-name-as-directory my-research-dir) "reading"))
+(setq my-bib-notes-dir (concat (file-name-as-directory my-org-dir) "reading"))
+(setq my-org-roam-directory (concat (file-name-as-directory my-org-dir) "roam"))
 
 ;;; Commentary:
 ;; This is a modular setup, where different modes have their own
@@ -50,7 +48,6 @@
   (require 'init-embark)
   (require 'init-platform)
   (require 'init-appearance)
-  (require 'init-edit)
   (require 'init-dired)
   (require 'init-helm)
   (require 'init-tramp)
