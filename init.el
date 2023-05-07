@@ -25,9 +25,9 @@
 ;; Derived global variables.
 (setq my-org-dir (concat (file-name-as-directory my-research-dir) "org"))
 (setq my-bib-path (concat (file-name-as-directory my-research-dir) my-bib-file))
-(setq my-bib-library-dir (concat (file-name-as-directory my-research-dir) "reading"))
-(setq my-bib-notes-dir (concat (file-name-as-directory my-org-dir) "reading"))
-(setq my-org-roam-directory (concat (file-name-as-directory my-org-dir) "roam"))
+(setq my-bib-library-dir (concat (file-name-as-directory my-research-dir) "ref"))
+(setq my-bib-notes-dir (concat (file-name-as-directory my-org-dir) "ref"))
+(setq my-org-roam-directory (file-name-as-directory my-org-dir))
 
 ;;; Commentary:
 ;; This is a modular setup, where different modes have their own
