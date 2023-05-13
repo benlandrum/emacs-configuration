@@ -204,6 +204,10 @@
   (citar-bibliography my-bib-path)
   (citar-library-paths (list my-bib-library-dir))
   (citar-notes-paths (list my-bib-notes-dir))
+  :bind
+  ;; This allows me to select from all references, and it brings up non-roam preexisting notes, but it's a capture.
+  ;; An alternative is citar-open-note, but this doesn't show me all references.
+  (("C-c n n" . citar-open-notes))
   :hook
   (LaTeX-mode . citar-capf-setup)
   (org-mode . citar-capf-setup))
@@ -218,5 +222,34 @@
   :config
   (org-roam-bibtex-mode 1)
   (setq orb-roam-ref-format 'org-cite))
+
+(use-package citar-org-roam
+  :after (citar org-roam)
+  :config (citar-org-roam-mode))
+
+(setq citar-notes-source 'orb-citar-source)
+
+;; Can access this in Org mode, but citar-org-roam adds an extra citation key with unexpected formatting: @key.
+;; Should I consider :if-new, :info, :node, :props?
+;; Should I use citekey instead of citar-citekey?
+;; https://kristofferbalintona.me/posts/202206141852/
+(push '("n" "org-noter" plain
+	"%?"
+	:target
+	(file+head
+	 "ref/${citar-citekey}.org"
+	 ":PROPERTIES:
+:ROAM_REFS: [cite:@${citar-citekey}]
+:END:
+#+TITLE: ${citar-title}
+
+* Notes                                                               :noter:
+")
+	:unnarrowed t) org-roam-capture-templates)
+
+(setq citar-org-roam-capture-template-key "n")
+
+;; https://github.com/emacs-citar/citar-org-roam/issues/26#issuecomment-1474938504
+(org-roam-db-sync)
 
 (provide 'init-bib)

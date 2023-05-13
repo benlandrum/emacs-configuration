@@ -100,9 +100,19 @@
 
 (use-package org-roam
   :after org
-  :init (setq org-roam-v2-ack t)
+  :init
+  (setq org-roam-v2-ack t)
+  (setq org-roam-capture-templates
+	'(("d" "default" plain
+	   "%?"
+	   :target
+	   (file+head
+	    "zettel/%<%Y%m%d%H%M%S>-${slug}.org"
+	    "#+TITLE: ${title}\n")
+	   :unnarrowed t)))
   :custom
   (org-roam-directory my-org-roam-directory)
+  (org-roam-dailies-directory "daily")
   (org-roam-dailies-capture-templates
    '(("d" "default" entry
          "* %?"
