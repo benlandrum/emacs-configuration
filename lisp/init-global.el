@@ -11,7 +11,7 @@
 (setq ring-bell-function 'ignore)
 (setq column-number-mode t)
 (setq vc-follow-symlinks t)
-(setq large-file-warning-threshold 50000000)
+(setq large-file-warning-threshold 100000000)
 
 ;; Prevent automatic customization of init.el.
 (setq custom-file (concat user-emacs-directory my-custom-file))

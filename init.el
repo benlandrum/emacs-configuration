@@ -18,8 +18,6 @@
  my-research-dir "~/research"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
- my-vagrant-vm-address "privatecloudvm"
- my-vagrant-vm-path "/Users/blandrum/beeswax/vms/privatecloudvm"
  )
 
 ;; Derived global variables.

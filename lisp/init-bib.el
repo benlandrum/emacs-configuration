@@ -199,15 +199,34 @@
       (ebib-copy-key-as-kill)
       (setq entry (car kill-ring)))))
 
+
+(use-package citar
+  :no-require
+  :custom
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-bibliography org-cite-global-bibliography)
+  ;; optional: org-cite-insert is also bound to C-c C-x C-@
+  :bind
+  (:map org-mode-map :package org ("C-c b" . #'org-cite-insert)))
+
 (use-package citar
   :custom
-  (citar-bibliography my-bib-path)
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-bibliography org-cite-global-bibliography)
   (citar-library-paths (list my-bib-library-dir))
   (citar-notes-paths (list my-bib-notes-dir))
   :bind
   ;; This allows me to select from all references, and it brings up non-roam preexisting notes, but it's a capture.
   ;; An alternative is citar-open-note, but this doesn't show me all references.
-  (("C-c n n" . citar-open-notes))
+  (("C-c n n" . citar-open-notes)
+   ;; Override `org-cite-insert` key binding.
+   ;; citar is better at differentiating between sources with the same authors and titles.
+   ;; Multi-volume works are an example.
+   (:map org-mode-map :package org ("C-c b" . #'org-cite-insert)))
   :hook
   (LaTeX-mode . citar-capf-setup)
   (org-mode . citar-capf-setup))

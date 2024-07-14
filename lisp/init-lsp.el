@@ -37,7 +37,12 @@
 	 (cpp-mode . lsp)
 	 (python-mode . lsp)
 	 (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
+  :commands lsp
+  :config
+  ;; Following the advice below, after finding eldoc causing slowness.
+  ;; https://ianyepan.github.io/posts/emacs-ide/
+  ;; It suggests other lsp-* features to disable.
+  (setq lsp-eldoc-hook nil))
 
 (use-package lsp-pyright)
 (use-package lsp-treemacs)
