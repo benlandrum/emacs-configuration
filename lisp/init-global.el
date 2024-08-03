@@ -66,6 +66,15 @@
    ("\C-ct" . google-translate-at-point)
    ("\C-cT" . google-translate-query-translate)))
 
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+(use-package typo
+  :config
+  (typo-global-mode 1)
+  (add-hook 'text-mode-hook 'typo-mode))
+
 (provide 'init-global)
 
 ;;; init-global.el ends here
