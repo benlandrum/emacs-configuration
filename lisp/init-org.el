@@ -12,6 +12,7 @@
   :config
   (setq org-cycle-emulate-tab nil
 	org-startup-indented t
+	org-src-preserve-indentation t
 	org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
   (if my-org-directory
       (setq org-agenda-files (directory-files-recursively
