@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: derivative
+# key: derivative
+# --
+\frac{\mathrm{d}${1:dependent}}{\mathrm{d}${2:independent}}$0

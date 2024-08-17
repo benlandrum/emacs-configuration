@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: double-underline
+# key: dunderl
+# --
+\underline{\underline{$1}}$0
