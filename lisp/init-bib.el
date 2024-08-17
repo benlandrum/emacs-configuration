@@ -76,7 +76,7 @@
 
 (defun my--files-matching-key-recursive (root key)
   "Get all PDF and EPUB files with names matching a BibTeX KEY within a ROOT directory."
-  (append (directory-files-recursively root (concat (regexp-quote key) "\\.\\(pdf\\|epub\\)") nil t t)))
+  (append (directory-files-recursively root (concat "^" (regexp-quote key) "\\.\\(pdf\\|epub\\)$") nil t t)))
 
 ;; TODO: Restrict to ebib-mode.
 (defun my-ebib-import-file-from-dropbox-hierarchy ()
