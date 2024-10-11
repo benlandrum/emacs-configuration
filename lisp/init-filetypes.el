@@ -13,6 +13,8 @@
 (use-package julia-mode)
 (use-package terraform-mode)
 (use-package vterm)
+(use-package gnuplot)
+(use-package gnuplot-mode)
 (use-package julia-snail
   :requires vterm
   :hook (julia-mode . julia-snail-mode)
@@ -39,7 +41,8 @@
 (use-package org-contrib)
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((asymptote . t)))
+ '((asymptote . t)
+   (gnuplot . t)))
 
 (add-to-list 'load-path my-asymptote-dir)
 (autoload 'asy-mode "asy-mode.el" "Asymptote major mode." t)

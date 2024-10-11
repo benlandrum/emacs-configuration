@@ -18,6 +18,7 @@
  my-research-dir "~/research"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
+ my-workon-home-dir "~/venv"
  )
 
 ;; Derived global variables.
@@ -51,10 +52,10 @@
   (require 'init-tramp)
   (require 'init-treemacs)
   (require 'init-lsp)
-  (require 'init-vagrant)
   (require 'init-pdf)
   (require 'init-magit)
   (require 'init-org)
+  (require 'init-python)
   (require 'init-filetypes)
   (require 'init-bib)
   (require 'init-dashboard))
