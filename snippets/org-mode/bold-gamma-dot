@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bold-gamma-dot
+# key: bgdot
+# --
+\dot{\boldsymbol{\gamma}}

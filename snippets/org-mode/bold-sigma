@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bold-sigma
+# key: bsigma
+# --
+\boldsymbol{\sigma}
