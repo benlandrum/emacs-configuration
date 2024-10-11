@@ -35,6 +35,8 @@
   (setq indent-tabs-mode nil))
 (add-hook 'js-mode-hook 'my-js-mode-hook)
 
+(use-package ob-asymptote)
+
 ;; ob-asymptote, org-babel, and asymptote.
 ;; ob-asymptote will migrate to org.
 ;; https://github.com/emacsmirror/org-contrib/commit/fff6c888065588527b1c1d7dd7e41c29ef767e17

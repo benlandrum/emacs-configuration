@@ -5,10 +5,6 @@
 
 ;;; Code:
 
-(use-package marginalia
-  :config
-  (marginalia-mode))
-
 (use-package embark
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding

@@ -19,7 +19,8 @@
 ;; Example multi-hop paths.
 ;; /ssh:vm-user@vm.example.net|docker:user@container:/path/to/file
 ;; /sudo:root@localhost|docker:user@container:/path/to/file
-(use-package docker-tramp)
+;; Supposedly no longer needed as of Emacs 29.
+;; (use-package docker-tramp)
 
 ;; flycheck is causing freezes.  I disabled it.  I also removed flymake.
 ;; Also, when TRAMP freezes, try tramp-cleanup-this-connection.

@@ -20,7 +20,7 @@
   (plist-put org-format-latex-options
 	     :scale my-org-format-latex-text-ratio)
 
-  ;; This requres dvipng.
+  ;; This requires dvipng.
   ;; I installed this with tlmgr.
 
   ;; Sync LaTeX fragment scaling with text scaling.
