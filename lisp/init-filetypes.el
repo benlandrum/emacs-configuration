@@ -25,10 +25,11 @@
 
 (add-to-list 'auto-mode-alist '("\\.txx\\'" . c++-mode))
 
-(add-hook 'text-mode-hook
-          '(lambda ()
-             (setq indent-tabs-mode nil)
-             (setq tab-width 4)))
+;; Org-mode updates force a tab-width of 8.
+;; (add-hook 'text-mode-hook
+;;           '(lambda ()
+;;              (setq indent-tabs-mode nil)
+;;              (setq tab-width 4)))
 
 (defun my-js-mode-hook ()
   "Custom `js-mode' behavior."

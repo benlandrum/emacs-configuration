@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(use-package flycheck
-  :init (global-flycheck-mode))
+;(use-package flycheck :init (global-flycheck-mode))
 
 ;; Important: stderr gets sent to /tmp/<process-name>-<id>~stderr
 ;; https://emacs-lsp.github.io/lsp-mode/page/remote/
@@ -23,11 +22,11 @@
     (setq lsp-log-io t
 	  lsp-print-performance t))
   :config
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-tramp-connection "pyls")
-		    :major-modes '(python-mode)
-		    :remote? t
-		    :server-id 'pyls-remote))
+  ;; (lsp-register-client
+  ;;  (make-lsp-client :new-connection (lsp-tramp-connection "pyls")
+  ;; 		    :major-modes '(python-mode)
+  ;; 		    :remote? t
+  ;; 		    :server-id 'pyls-remote))
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
 		    :major-modes '(c-mode c++-mode)
@@ -35,7 +34,8 @@
 		    :server-id 'clangd-remote))
   :hook ((c-mode . lsp)
 	 (cpp-mode . lsp)
-	 (python-mode . lsp)
+	 ;; Running into library problems.
+	 ;(python-mode . lsp)
 	 (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
   :config
@@ -44,7 +44,9 @@
   ;; It suggests other lsp-* features to disable.
   (setq lsp-eldoc-hook nil))
 
-(use-package lsp-pyright)
+;; Running into library problems.
+;(use-package lsp-pyright)
+
 (use-package lsp-treemacs)
 
 (use-package dap-mode)

@@ -10,7 +10,9 @@
 
 (use-package elpy
   :init
-  (elpy-enable))
+  (elpy-enable)
+  :config
+  (defalias 'workon 'pyvenv-workon))
 
 (provide 'init-python)
 
