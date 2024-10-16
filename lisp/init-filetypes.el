@@ -45,7 +45,8 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((asymptote . t)
-   (gnuplot . t)))
+   (gnuplot . t)
+   (python . t)))
 
 (add-to-list 'load-path my-asymptote-dir)
 (autoload 'asy-mode "asy-mode.el" "Asymptote major mode." t)
