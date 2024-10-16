@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: beamer-question-answer
+# key: beamerqa
+# --
+Question
+:PROPERTIES:
+:BEAMER_act: <1->
+:END:
+Answer
+:PROPERTIES:
+:BEAMER_act: <2>
+:END:

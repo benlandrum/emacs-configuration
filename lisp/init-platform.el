@@ -2,8 +2,13 @@
 
 ;;; Commentary:
 ;; Just adding paths and support for Apple operating systems here.
+;; I might not need a lot of this code after using exec-path-from-shell.
 
 ;;; Code:
+
+(use-package exec-path-from-shell)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 (defun my-add-to-env-path (p)
   (setenv "PATH" (concat (getenv "PATH") ":" p))
