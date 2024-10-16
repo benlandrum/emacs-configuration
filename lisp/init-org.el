@@ -157,4 +157,21 @@
 
 (provide 'init-org)
 
+;; Always permit Babel fragment evaluation for files checked into my repos.
+;; This must be loaded after Magit.
+(defun my-is-safe-file-predicate ()
+  "Custom predicate to control when to prompt about Babel evaluation."
+  (let ((remote (magit-get "remote" (magit-get-remote) "url")))
+    (if (and (member remote my-file-local-repos)
+	     (vc-backend (buffer-file-name)))
+	t nil)))
+
+(defun my-org-confirm-babel-evaluate-predicate (lang body)
+  (not (my-is-safe-file-predicate)))
+(setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate-predicate)
+
+(defun my-enable-local-variables-predicate ()
+  (my-is-safe-file-predicate))
+(setq enable-local-variables 'my-enable-local-variables-predicate)
+
 ;;; init-org.el ends here

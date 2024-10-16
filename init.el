@@ -8,6 +8,7 @@
  my-custom-file "custom.el"
  my-dropbox-reading-directory "~/Dropbox/reading"
  my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
+ my-file-local-repos '("git@bitbucket.org:blandrum/research.git")
  my-init-file "~/.emacs.d/init.el"
  my-lsp-clients-clangd-executable "/ssh:privatecloudvm:/usr/bin/clangd"
  my-lsp-debug nil
