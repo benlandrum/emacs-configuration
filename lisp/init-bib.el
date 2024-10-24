@@ -271,6 +271,4 @@
 ;; https://github.com/emacs-citar/citar-org-roam/issues/26#issuecomment-1474938504
 (org-roam-db-sync)
 
-(add-to-list 'safe-local-variable-values "bibtex-dialect")
-
 (provide 'init-bib)

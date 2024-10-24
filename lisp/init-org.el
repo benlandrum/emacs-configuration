@@ -170,8 +170,4 @@
   (not (my-is-safe-file-predicate)))
 (setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate-predicate)
 
-(defun my-enable-local-variables-predicate ()
-  (my-is-safe-file-predicate))
-(setq enable-local-variables 'my-enable-local-variables-predicate)
-
 ;;; init-org.el ends here
