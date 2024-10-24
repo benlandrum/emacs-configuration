@@ -7,7 +7,7 @@
 
 (use-package yaml-mode)
 (use-package dockerfile-mode)
-(use-package bazel-mode)
+(use-package bazel)
 (use-package protobuf-mode)
 (use-package haskell-mode)
 (use-package julia-mode)
