@@ -5,7 +5,10 @@
 
 ;;; Code:
 
-(setq pdf-info-epdfinfo-program my-epdfinfo-program)
+;; Keep this as a conditional to allow booting before epdfinfo gets set up.
+;; Need to customize this variable later.
+(when (boundp 'pdf-info-epdfinfo-program)
+  (setq pdf-info-epdfinfo-program my-epdfinfo-program))
 
 (use-package pdf-tools
 	     :pin manual ;; manually update

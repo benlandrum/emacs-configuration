@@ -1,5 +1,8 @@
 ;;; init.el --- Ben Landrum's Emacs .init file
 
+;; System-specific variables needing customization.
+; my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
+
 ;; Global variables
 (setq
  debug-on-error nil
@@ -7,7 +10,6 @@
  my-bib-file "bibliography.bib"
  my-custom-file "custom.el"
  my-dropbox-reading-directory "~/Dropbox/reading"
- my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
  my-file-local-repos '("git@bitbucket.org:blandrum/research.git")
  my-init-file "~/.emacs.d/init.el"
  my-lsp-clients-clangd-executable "/ssh:privatecloudvm:/usr/bin/clangd"
