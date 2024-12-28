@@ -24,6 +24,8 @@
 ;; Type 'y' instead of 'yes' and Enter.
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(unless (boundp 'package-archives)
+  (setq package-archives '()))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
