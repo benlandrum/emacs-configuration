@@ -14,6 +14,8 @@
   :config
   (defalias 'workon 'pyvenv-workon))
 
+(use-package blacken)
+
 (provide 'init-python)
 
 ;;; init-python.el ends here
