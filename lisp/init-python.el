@@ -15,6 +15,7 @@
   (defalias 'workon 'pyvenv-workon))
 
 (use-package blacken)
+(use-package isortify)
 
 (provide 'init-python)
 
