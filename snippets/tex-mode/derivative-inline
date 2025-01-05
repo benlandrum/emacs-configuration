@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: derivative-inline
+# key: ddi
+# --
+\mathrm{d}$1/\mathrm{d}$2$0

@@ -1,5 +1,6 @@
-# key: pmatrix3
+# -*- mode: snippet -*-
 # name: pmatrix3
+# key: pmat3
 # --
 \begin{pmatrix}
 $1 & $2 & $3 \\\\

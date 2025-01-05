@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: bmatrix3
-# key: bmatrix3
+# key: bmat3
 # --
 \begin{bmatrix}
 $1 & $2 & $3 \\\\

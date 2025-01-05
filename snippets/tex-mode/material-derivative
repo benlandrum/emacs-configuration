@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: material-derivative
-# key: material
+# key: matd
 # --
 \frac{\mathrm{D}$1}{\mathrm{D}t}$0
