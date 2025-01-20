@@ -170,4 +170,9 @@
   (not (my-is-safe-file-predicate)))
 (setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate-predicate)
 
+;; Prevent org-ctags from changing desired org-open-link-functions.
+;; It makes internal links function in unexpected ways.
+;; https://emacs.stackexchange.com/a/76352
+(with-eval-after-load 'org-ctags (setq org-open-link-functions nil))
+
 ;;; init-org.el ends here
