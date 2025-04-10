@@ -37,6 +37,9 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
+;; Avoid bad-signature errors on packages.
+(use-package gnu-elpa-keyring-update)
+
 (use-package form-feed
   :hook ((emacs-lisp-mode . form-feed-mode)
 	 (emacs-compilation-mode . form-feed-mode)))
