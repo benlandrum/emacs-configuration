@@ -31,6 +31,18 @@
 ;;              (setq indent-tabs-mode nil)
 ;;              (setq tab-width 4)))
 
+;; https://www.reddit.com/r/emacs/comments/15y7j41/suggestions_on_my_configuration_of_auctex/
+(defun my-tex-save-and-compile ()
+  (interactive)
+  (let (TeX-save-query) (TeX-save-document (TeX-master-file)))
+  (TeX-command-run-all nil))
+
+(use-package tex
+  :pin gnu
+  :ensure auctex
+  :mode ("\\.tex\\$" . latex-mode)
+  :bind (("<f5>" . 'my-tex-save-and-compile)))
+
 (defun my-js-mode-hook ()
   "Custom `js-mode' behavior."
   (setq indent-tabs-mode nil))
