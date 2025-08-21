@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: upper-convected-stress
+# key: ucstress
+# --
+\overset{\triangledown}{\boldsymbol{\sigma}}$0

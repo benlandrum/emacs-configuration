@@ -2,4 +2,4 @@
 # name: upper-convected-time-derivative
 # key: upper
 # --
-\stackrel{\triangledown}{\mathbf{$1}}$0
+\overset{\triangledown}{$1}$0
