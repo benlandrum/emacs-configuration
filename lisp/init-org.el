@@ -6,8 +6,6 @@
 
 ;;; Code:
 
-(use-package org-fragtog)
-
 (use-package org
   :config
   (setq org-cycle-emulate-tab nil
@@ -34,7 +32,6 @@
   (add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
 
   (add-hook 'org-mode-hook #'visual-line-mode)
-  (add-hook 'org-mode-hook 'org-fragtog-mode)
 
   ;; https://writequit.org/articles/emacs-org-mode-generate-ids.html
   (defun my-org-custom-id-get (&optional pom create prefix)
@@ -65,6 +62,10 @@
   ;; Automatically add ids to captured headlines.
   (add-hook 'org-capture-prepare-finalize-hook
             (lambda () (my-org-custom-id-get (point) 'create))))
+
+;; Trying this out for now.
+(use-package xenops)
+(add-hook 'latex-mode-hook #'xenops-mode)
 
 ;; Not technically org, but I always use this through org.
 ;; "C-c C-e h o" renders to my browser with syntax highlighting with this.
