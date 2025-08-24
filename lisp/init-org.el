@@ -6,7 +6,13 @@
 
 ;;; Code:
 
+;; Currently using the org-mode below for faster LaTeX previews.
+;; https://abode.karthinks.com/org-latex-preview/
+;; https://git.tecosaur.net/tec/org-mode
+;; (package-vc-install '(org-mode :url "https://code.tecosaur.net/tec/org-mode" :branch "dev"))
+
 (use-package org
+  :load-path "~/.emacs.d/elpa/org-mode/lisp/"
   :config
   (setq org-cycle-emulate-tab nil
 	org-startup-indented t
@@ -15,8 +21,8 @@
   (if my-org-directory
       (setq org-agenda-files (directory-files-recursively
 			      my-org-directory "\.org$" nil t t)))
-  (plist-put org-format-latex-options
-	     :scale my-org-format-latex-text-ratio)
+  (plist-put org-latex-preview-appearance-options :page-width 0.8)
+  (plist-put org-latex-preview-appearance-options :zoom my-org-latex-preview-appearance-zoom)
 
   ;; This requires dvipng.
   ;; I installed this with tlmgr.
@@ -32,6 +38,16 @@
   (add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
 
   (add-hook 'org-mode-hook #'visual-line-mode)
+
+  ;; Turn on org-latex-preview-mode.
+  (add-hook 'org-mode-hook 'org-latex-preview-mode)
+
+  ;; Turn on live previews.
+  (setq org-latex-preview-mode-display-live t)
+
+  ;; More immediate live previews.
+  ;; Default is one second.
+  (setq org-latex-preview-mode-update-delay 0.25)
 
   ;; https://writequit.org/articles/emacs-org-mode-generate-ids.html
   (defun my-org-custom-id-get (&optional pom create prefix)

@@ -16,6 +16,7 @@
  my-lsp-debug nil
  my-minimum-emacs-version "27.1"
  my-org-directory nil
+ my-org-latex-preview-appearance-zoom 1.6
  my-org-format-latex-text-ratio 1.8
  my-quotes-path "~/.emacs.d/quotes.txt"
  my-research-dir "~/research"
