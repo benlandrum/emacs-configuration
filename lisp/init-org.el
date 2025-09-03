@@ -21,8 +21,6 @@
   (if my-org-directory
       (setq org-agenda-files (directory-files-recursively
 			      my-org-directory "\.org$" nil t t)))
-  (plist-put org-latex-preview-appearance-options :page-width 0.8)
-  (plist-put org-latex-preview-appearance-options :zoom my-org-latex-preview-appearance-zoom)
 
   ;; This requires dvipng.
   ;; I installed this with tlmgr.
@@ -41,6 +39,13 @@
 
   ;; Turn on org-latex-preview-mode.
   (add-hook 'org-mode-hook 'org-latex-preview-mode)
+
+  ;; Calling plist-put on this variable does not work in this config step.
+  ;; For now, set it as a hook.
+  (defun set-appearance-options ()
+    (plist-put org-latex-preview-appearance-options :page-width 0.8)
+    (plist-put org-latex-preview-appearance-options :zoom my-org-latex-preview-appearance-zoom))
+  (add-hook 'org-mode-hook 'set-appearance-options)
 
   ;; Turn on live previews.
   (setq org-latex-preview-mode-display-live t)
