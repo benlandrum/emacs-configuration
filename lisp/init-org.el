@@ -6,13 +6,13 @@
 
 ;;; Code:
 
-;; Currently using the org-mode below for faster LaTeX previews.
-;; https://abode.karthinks.com/org-latex-preview/
-;; https://git.tecosaur.net/tec/org-mode
-;; (package-vc-install '(org-mode :url "https://code.tecosaur.net/tec/org-mode" :branch "dev"))
 
 (use-package org
-  :load-path "~/.emacs.d/elpa/org-mode/lisp/"
+  ;; The org-mode below for faster LaTeX previews.
+  ;; https://abode.karthinks.com/org-latex-preview/
+  ;; https://git.tecosaur.net/tec/org-mode
+  ;; (package-vc-install '(org-mode :url "https://code.tecosaur.net/tec/org-mode" :branch "dev"))
+					;:load-path "~/.emacs.d/elpa/org-mode/lisp/"
   :config
   (setq org-cycle-emulate-tab nil
 	org-startup-indented t
@@ -38,14 +38,14 @@
   (add-hook 'org-mode-hook #'visual-line-mode)
 
   ;; Turn on org-latex-preview-mode.
-  (add-hook 'org-mode-hook 'org-latex-preview-mode)
+  ;(add-hook 'org-mode-hook 'org-latex-preview-mode)
 
   ;; Calling plist-put on this variable does not work in this config step.
   ;; For now, set it as a hook.
   (defun set-appearance-options ()
     (plist-put org-latex-preview-appearance-options :page-width 0.8)
     (plist-put org-latex-preview-appearance-options :zoom my-org-latex-preview-appearance-zoom))
-  (add-hook 'org-mode-hook 'set-appearance-options)
+  ;(add-hook 'org-mode-hook 'set-appearance-options)
 
   ;; Turn on live previews.
   (setq org-latex-preview-mode-display-live t)
