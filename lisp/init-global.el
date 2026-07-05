@@ -24,10 +24,13 @@
 ;; Type 'y' instead of 'yes' and Enter.
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(unless (boundp 'package-archives)
-  (setq package-archives '()))
+(require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
+
+;(unless (boundp 'package-archives)
+;  (setq package-archives '()))
+;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;(package-initialize)
 
 (eval-when-compile
   ;; Following line is not needed if use-package.el is in ~/.emacs.d
