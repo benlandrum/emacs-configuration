@@ -1,12 +1,15 @@
 ;;; init-appearance.el --- Set the theme and editor appearance.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;; Right now, just uses the light Solarized theme.
+;; Interaction with themes, menu, tool, and scroll bars.
 
 ;;; Code:
 
-(use-package solarized-theme)
-(load-theme 'solarized-light t)
+;; Commenting out for Omarchy.
+;(use-package solarized-theme)
+;(load-theme 'solarized-light t)
+
+(load (file-name-concat user-emacs-directory "omarchy.el"))
 
 ;; Hide the menu bar, tool bar, and scroll bars.
 (when (fboundp 'menu-bar-mode)   (menu-bar-mode   -1))
