@@ -1,4 +1,4 @@
-;;; init-global.el --- Configure low-level Emacs options.
+;;; init-global.el --- Configure low-level Emacs options.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Remove some annoyances (e.g., bells), and require use-package.
@@ -6,7 +6,7 @@
 ;;; Code:
 
 ;; Quickly access the predefined master init file with C-x r j e
-(set-register ?e (cons 'file my-init-file))
+(set-register ?e (cons 'file user-init-file))
 
 (setq ring-bell-function 'ignore)
 (setq column-number-mode t)

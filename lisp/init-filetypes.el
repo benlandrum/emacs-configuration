@@ -1,4 +1,4 @@
-;;; init-filetypes.el --- Add modes for different file types.
+;;; init-filetypes.el --- Add modes for different file types.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Put all file types that don't need much customization here.

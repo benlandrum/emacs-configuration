@@ -1,4 +1,4 @@
-;;; init-python.el --- Customize elpy and virtual environments.
+;;; init-python.el --- Customize elpy and virtual environments.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Nothing yet.

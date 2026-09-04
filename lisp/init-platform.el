@@ -1,4 +1,4 @@
-;;; init-platform.el --- OS-specific settings.
+;;; init-platform.el --- OS-specific settings.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Just adding paths and support for Apple operating systems here.

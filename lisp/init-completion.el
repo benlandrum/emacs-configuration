@@ -1,4 +1,4 @@
-;; Match space-separated words in any order.
+;; Match space-separated words in any order.  -*- lexical-binding: t; -*-
 (use-package orderless
   :ensure t
   :custom

@@ -1,4 +1,4 @@
-;;; init-treemacs.el --- Customize treemacs.
+;;; init-treemacs.el --- Customize treemacs.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Not really using this yet.

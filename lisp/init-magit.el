@@ -1,4 +1,4 @@
-;;; init-magit.el --- Customize magit.
+;;; init-magit.el --- Customize magit.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Some annoyance-removing tweaks.

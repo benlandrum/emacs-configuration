@@ -1,4 +1,4 @@
-;;; init-dired.el --- Configure dired.
+;;; init-dired.el --- Configure dired.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Just using dired-du for now.

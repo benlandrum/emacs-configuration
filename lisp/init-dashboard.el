@@ -1,4 +1,4 @@
-;;; init-dashboard.el --- Set the start-up dashboard.
+;;; init-dashboard.el --- Set the start-up dashboard.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Right now, just uses the light Solarized theme.

@@ -1,4 +1,4 @@
-;;; init-appearance.el --- Set the theme and editor appearance.
+;;; init-appearance.el --- Set the theme and editor appearance.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Right now, just uses the light Solarized theme.

@@ -1,4 +1,4 @@
-;;; init-lsp.el --- Configure LSP mode and clients here.
+;;; init-lsp.el --- Configure LSP mode and clients here.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; This is a work in progress.  LSP sometimes crashes and stalls.

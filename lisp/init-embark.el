@@ -1,4 +1,4 @@
-;;; init-embark.el --- Configure Marginalia and Embark.
+;;; init-embark.el --- Configure Marginalia and Embark.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Mostly for embark-act on an org-cite citation.

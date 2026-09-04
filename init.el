@@ -1,4 +1,4 @@
-;;; init.el --- Ben Landrum's Emacs .init file
+;;; init.el --- Ben Landrum's Emacs .init file  -*- lexical-binding: t; -*-
 
 ;; System-specific variables needing customization.
 ; my-epdfinfo-program "/Users/blandrum/.local/bin/epdfinfo"
@@ -11,14 +11,13 @@
  my-custom-file "custom.el"
  my-dropbox-reading-directory "~/Dropbox/reading"
  my-file-local-repos '("git@bitbucket.org:blandrum/research.git")
- my-init-file "~/.emacs.d/init.el"
  my-lsp-clients-clangd-executable "/ssh:privatecloudvm:/usr/bin/clangd"
  my-lsp-debug nil
  my-minimum-emacs-version "27.1"
  my-org-directory nil
  my-org-latex-preview-appearance-zoom 1.6
  my-org-format-latex-text-ratio 1.8
- my-quotes-path "~/.emacs.d/quotes.txt"
+ my-quotes-path (file-name-concat user-emacs-directory "quotes.txt")
  my-research-dir "~/research"
  my-tramp-default-method "scp"
  my-tramp-verbose 6
@@ -26,10 +25,10 @@
  )
 
 ;; Derived global variables.
-(setq my-org-dir (concat (file-name-as-directory my-research-dir) "org"))
-(setq my-bib-path (concat (file-name-as-directory my-research-dir) my-bib-file))
-(setq my-bib-library-dir (concat (file-name-as-directory my-research-dir) "ref"))
-(setq my-bib-notes-dir (concat (file-name-as-directory my-org-dir) "ref"))
+(setq my-org-dir (file-name-concat my-research-dir "org"))
+(setq my-bib-path (file-name-concat my-research-dir my-bib-file))
+(setq my-bib-library-dir (file-name-concat my-research-dir "ref"))
+(setq my-bib-notes-dir (file-name-concat my-org-dir "ref"))
 (setq my-org-roam-directory (file-name-as-directory my-org-dir))
 
 ;;; Commentary:
@@ -42,7 +41,7 @@
   (error "Emacs version %s is older than required version %s"
 	 emacs-version my-minimum-emacs-version))
 
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.config/emacs/lisp/")
 (let ((file-name-handler-alist nil)  ; anti-regex speed loading hack
       (gc-cons-threshold 100000000)  ; delay garbage collection
       (debug-on-error t)

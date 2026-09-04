@@ -1,4 +1,4 @@
-;;; init-org.el --- Customize org and related modes.
+;;; init-org.el --- Customize org and related modes.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; The biggest customizations are indented startup and org-noter bindings.

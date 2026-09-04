@@ -1,4 +1,4 @@
-;;; init-bib.el --- Customize bibliographic packages.
+;;; init-bib.el --- Customize bibliographic packages.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Customize bibliographic import and paths.
