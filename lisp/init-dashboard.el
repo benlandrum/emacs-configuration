@@ -15,7 +15,12 @@
 
 (use-package dashboard
   :config
-  (setq dashboard-footer-messages (read-lines my-quotes-path))
+  (if (file-readable-p my-quotes-path)
+      (let ((lines (read-lines my-quotes-path)))
+	(if lines
+	    (setq dashboard-footer-messages lines)
+	  (message "Skipping empty quotes file \"%s\"." my-quotes-path)))
+    (message "No quotation file readable at \"%s\"." my-quotes-path))
   (dashboard-setup-startup-hook))
 
 (provide 'init-dashboard)
