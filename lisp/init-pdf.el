@@ -1,4 +1,4 @@
-;;; init-pdf.el --- Customize PDF interaction.
+;;; init-pdf.el --- Customize PDF interaction.  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Really just customizing pdf-tools here.
@@ -10,28 +10,30 @@
 (when (boundp 'pdf-info-epdfinfo-program)
   (setq pdf-info-epdfinfo-program my-epdfinfo-program))
 
-(use-package pdf-tools
-  ;; Trying uncommenting for Omarchy.
-  ;; Does it still work for Mac when unpinned?
-  ;; :pin manual
-  :config
 
-  ;; Initialize.
-  (pdf-tools-install)
+;; TODO: Support macos.
+;;       I previously had `:pin manual` for it.
+;;       But later I just stopped sourcing this file.
+(when (string= system-type "gnu/linux")
+  (use-package pdf-tools
+    :config
 
-  (setq-default pdf-view-display-size 'fit-width)
+    ;; Initialize.
+    (pdf-tools-install)
 
-  ;; More fine-grained zooming
-  (setq pdf-view-resize-factor 1.1)
+    (setq-default pdf-view-display-size 'fit-width)
 
-  ;; Use normal isearch
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+    ;; More fine-grained zooming
+    (setq pdf-view-resize-factor 1.1)
 
-  ;; Annotation shortcuts
-  (define-key pdf-view-mode-map (kbd "h")
-	      'pdf-annot-add-highlight-markup-annotation)
-  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
-  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete))
+    ;; Use normal isearch
+    (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+
+    ;; Annotation shortcuts
+    (define-key pdf-view-mode-map (kbd "h")
+		'pdf-annot-add-highlight-markup-annotation)
+    (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
+    (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)))
 
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
