@@ -55,7 +55,7 @@
   (require 'init-tramp)
   (require 'init-treemacs)
   (require 'init-lsp)
-  ;(require 'init-pdf)
+  (require 'init-pdf)
   (require 'init-magit)
   (require 'init-org)
   (require 'init-python)

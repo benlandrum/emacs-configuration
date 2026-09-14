@@ -11,25 +11,27 @@
   (setq pdf-info-epdfinfo-program my-epdfinfo-program))
 
 (use-package pdf-tools
-	     :pin manual ;; manually update
-	     :config
+  ;; Trying uncommenting for Omarchy.
+  ;; Does it still work for Mac when unpinned?
+  ;; :pin manual
+  :config
 
-	     ;; Initialize.
-	     (pdf-tools-install)
+  ;; Initialize.
+  (pdf-tools-install)
 
-	     (setq-default pdf-view-display-size 'fit-width)
+  (setq-default pdf-view-display-size 'fit-width)
 
-	     ;; More fine-grained zooming
-	     (setq pdf-view-resize-factor 1.1)
+  ;; More fine-grained zooming
+  (setq pdf-view-resize-factor 1.1)
 
-	     ;; Use normal isearch
-	     (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  ;; Use normal isearch
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
 
-	     ;; Annotation shortcuts
-	     (define-key pdf-view-mode-map (kbd "h")
-	       'pdf-annot-add-highlight-markup-annotation)
-	     (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
-	     (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete))
+  ;; Annotation shortcuts
+  (define-key pdf-view-mode-map (kbd "h")
+	      'pdf-annot-add-highlight-markup-annotation)
+  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
+  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete))
 
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 

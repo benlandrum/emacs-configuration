@@ -24,6 +24,9 @@
 	ns-command-modifier 'meta)
   (my-add-to-env-path "/Library/TeX/texbin"))
 
+(when (string= system-type "gnu/linux")
+  (my-add-to-env-path "/usr/local/texlive/2026/bin/x86_64-linux"))
+
 (provide 'init-platform)
 
 ;;; init-platform.el ends here
