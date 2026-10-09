@@ -14,10 +14,11 @@
   ;; (package-vc-install '(org-mode :url "https://code.tecosaur.net/tec/org-mode" :branch "dev"))
 					;:load-path "~/.emacs.d/elpa/org-mode/lisp/"
   :config
-  (setq org-cycle-emulate-tab nil
-	org-startup-indented t
+  (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+	org-cycle-emulate-tab nil
 	org-src-preserve-indentation t
-	org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+	org-startup-indented t
+	org-tags-sort-function 'string-collate-lessp)
   (if my-org-directory
       (setq org-agenda-files (directory-files-recursively
 			      my-org-directory "\.org$" nil t t)))
@@ -103,7 +104,8 @@
 (use-package org-noter
   :config
   (setq org-noter-auto-save-last-location t
-	org-noter-doc-split-fraction '(0.6 . 0.5))
+	org-noter-doc-split-fraction '(0.6 . 0.5)
+	org-noter-always-create-frame nil)
   :bind ("M-i" . org-noter-insert-precise-note))
 
 (defun my-org-roam-directory-set-relative (path)
@@ -153,7 +155,6 @@
 		("C-c n a" . org-roam-alias-add)
 		("C-c n l" . org-roam-buffer-toggle))))
   :config
-  (org-roam-setup)
   (org-roam-db-autosync-mode))
 
 (use-package ox-reveal)
