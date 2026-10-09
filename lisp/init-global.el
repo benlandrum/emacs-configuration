@@ -22,7 +22,7 @@
 (setq byte-compile-warnings '(cl-functions))
 
 ;; Type 'y' instead of 'yes' and Enter.
-(defalias 'yes-or-no-p 'y-or-n-p)
+(setq use-short-answers t)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)

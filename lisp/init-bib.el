@@ -257,6 +257,6 @@
 (setq citar-org-roam-capture-template-key "n")
 
 ;; https://github.com/emacs-citar/citar-org-roam/issues/26#issuecomment-1474938504
-(org-roam-db-sync)
+(require 'org-roam)
 
 (provide 'init-bib)

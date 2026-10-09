@@ -16,11 +16,10 @@
 ;;       But later I just stopped sourcing this file.
 (when (string= system-type "gnu/linux")
   (use-package pdf-tools
+    :defer t
+    :init
+    (pdf-loader-install)
     :config
-
-    ;; Initialize.
-    (pdf-tools-install)
-
     (setq-default pdf-view-display-size 'fit-width)
 
     ;; More fine-grained zooming
