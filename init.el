@@ -14,7 +14,6 @@
  my-lsp-clients-clangd-executable "/ssh:privatecloudvm:/usr/bin/clangd"
  my-lsp-debug nil
  my-minimum-emacs-version "29.1"
- my-org-directory nil
  my-org-latex-preview-appearance-zoom 1.6
  my-org-format-latex-text-ratio 1.8
  my-quotes-path (file-name-concat user-emacs-directory "quotes.txt")
