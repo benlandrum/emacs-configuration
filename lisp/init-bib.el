@@ -42,6 +42,10 @@
   "Import FILE into the current Ebib entry, keeping the original.
 `ebib-import-file' always prompts for its file, so answer the prompt
 with FILE."
+  ;; Temporarily, using cl-left, swap out the function for
+  ;; 'read-file-name with a lambda.
+  ;; The lambda just returns the file, no matter the args,
+  ;; rather than requiring a prompt.
   (cl-letf (((symbol-function 'read-file-name) (lambda (&rest _) file)))
     (ebib-import-file t)))
 
@@ -55,9 +59,15 @@ with FILE."
   "Import the unique Dropbox reading file named after the current entry's key.
 The file is copied into the first of `ebib-file-search-dirs'."
   (interactive)
+  ;; Note that the let* allows later VALUEFORMs to refer to symbols already bound
+  ;; in the VARLIST, i.e., `key`.
   (let* ((key (ebib--get-key-at-point))
 	 (files (my--files-matching-key-recursive
 		 my-dropbox-reading-directory key)))
+    ;; The first pattern matches
+    ;; The first pattern checks equality with nil, basically (no files).
+    ;; The second pattern matches a list with one element and binds the element to file.
+    ;; The last pattern is a catch-all.
     (pcase files
       ('() (user-error "[my] Import failed: no files matching %s" key))
       (`(,file) (my--ebib-import-file file))
