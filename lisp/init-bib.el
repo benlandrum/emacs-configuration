@@ -26,119 +26,97 @@
 (use-package ebib
   :bind (("C-c e" . ebib)
 	 (:map ebib-index-mode-map
-	       ("B" . ebib-biblio-import-doi))
-	 (:map biblio-selection-mode-map
-	       ("e" . ebib-biblio-selection-import)))
-  :config
-  (setq ebib-autogenerate-keys nil)
-  (setq ebib-bib-search-dirs (list my-research-dir))
-  (setq ebib-preload-bib-files (list my-bib-file))
-  (setq ebib-file-search-dirs (list my-bib-library-dir))
+	       ("B" . ebib-biblio-import-doi)))
+  :custom
+  (ebib-autogenerate-keys nil)
+  (ebib-bib-search-dirs (list my-research-dir))
+  (ebib-preload-bib-files (list my-bib-file))
+  (ebib-file-search-dirs (list my-bib-library-dir))
   ;; Open files within Emacs rather than calling xpdf or gv.
-  (setq ebib-file-associations nil)
-  (setq ebib-notes-directory my-bib-notes-dir))
+  (ebib-file-associations nil)
+  (ebib-notes-directory my-bib-notes-dir))
 
-;; TODO: Request a way to supply a file name argument without a command prompt.
-;;       For now just copying the function from ebib.el.
-;;       Original code Copyright (c) 2003-2022, Joost Kremers.
-;;       All rights reserved.
-(defun my--ebib-import-file (arg fname)
-  "A hack to get around ebib-import-file having to read from a prompt."
-  (let* ((key (ebib--get-key-at-point))
-         (file-path (expand-file-name fname))
-         (ext (file-name-extension file-path))
-         (new-name (ebib--create-file-name-from-key key ext))
-         (dest-dir (file-name-as-directory (car ebib-file-search-dirs)))
-         (dest-path (concat dest-dir new-name))
-         (overwrite nil))
-    (if (not (file-writable-p dest-path))
-        (error "[Ebib] Cannot write file %s" dest-path))
-    (while (and (file-exists-p dest-path)
-                (not overwrite))
-      (let ((choice (read-char-choice (format "File %s already exists; (o)verwrite / (r)ename / (c)ancel? " new-name) '(?o ?r ?c ?q))))
-        (cl-case choice
-          ((?c ?q) (error "[Ebib] Cancelled importing file"))
-          (?r (setq new-name (read-string (format "Change `%s' to: " new-name) new-name))
-              (setq dest-path (concat (file-name-as-directory (car ebib-file-search-dirs)) new-name)))
-          (?o (setq overwrite t)))))
-    (copy-file file-path dest-path t)
-    (unless arg
-      (delete-file file-path t))
-    (let ((files (ebib-get-field-value "file" key ebib--cur-db 'noerror 'unbraced)))
-      (when (or (null files)
-                (not (string-match-p (regexp-quote new-name) files)))
-        (ebib-set-field-value "file" (ebib--transform-file-name-for-storing (expand-file-name dest-path)) key ebib--cur-db ebib-filename-separator)
-        (ebib--set-modified t ebib--cur-db t (seq-filter (lambda (dependent)
-                                                           (ebib-db-has-key key dependent))
-                                                         (ebib--list-dependents ebib--cur-db)))
-        (ebib--update-entry-buffer)))))
+;;;; Ebib commands
+
+(defun my--ebib-import-file (file)
+  "Import FILE into the current Ebib entry, keeping the original.
+`ebib-import-file' always prompts for its file, so answer the prompt
+with FILE."
+  (cl-letf (((symbol-function 'read-file-name) (lambda (&rest _) file)))
+    (ebib-import-file t)))
 
 (defun my--files-matching-key-recursive (root key)
-  "Get all PDF and EPUB files with names matching a BibTeX KEY within a ROOT directory."
-  (append (directory-files-recursively root (concat "^" (regexp-quote key) "\\.\\(pdf\\|epub\\)$") nil t t)))
+  "Return the PDF and EPUB files under ROOT named after the BibTeX KEY."
+  (directory-files-recursively
+   root (concat "\\`" (regexp-quote key) "\\.\\(pdf\\|epub\\)\\'") nil t t))
 
 ;; TODO: Restrict to ebib-mode.
 (defun my-ebib-import-file-from-dropbox-hierarchy ()
-  "Called from ebib, searches Dropbox for a unique file matching this entry's key and imports it into (car my-ebib-file-search-dirs)."
+  "Import the unique Dropbox reading file named after the current entry's key.
+The file is copied into the first of `ebib-file-search-dirs'."
   (interactive)
-  (ebib-copy-key-as-kill)
-  (let* ((key (pop kill-ring))
-	 (matching-files (my--files-matching-key-recursive
-			  my-dropbox-reading-directory key)))
-    (cl-case (length matching-files)
-      (0 (error "[my] Import failed: no files matching %s" key))
-      (2 (error "[my] Import failed: multiple files matching %s: %s" key matching-files))
-      (1 (my--ebib-import-file t (car matching-files))))))
+  (let* ((key (ebib--get-key-at-point))
+	 (files (my--files-matching-key-recursive
+		 my-dropbox-reading-directory key)))
+    (pcase files
+      ('() (user-error "[my] Import failed: no files matching %s" key))
+      (`(,file) (my--ebib-import-file file))
+      (_ (user-error "[my] Import failed: multiple files matching %s: %s"
+		     key files)))))
+
+;; TODO: Restrict to ebib-mode.
+;; TODO: Handle empty .bib file.
+(defun my-ebib-iterate-entries ()
+  "Iterate through the ebib entries."
+  (interactive)
+  (ebib-goto-first-entry)
+  ;; `ebib-next-entry' stays put on the last entry, so stop once the key
+  ;; no longer changes.
+  (let ((key (ebib--get-key-at-point))
+	(last-key nil))
+    (while (not (equal key last-key))
+      (ebib-next-entry)
+      (setq last-key key
+	    key (ebib--get-key-at-point)))))
+
+;;;; Bibliography consistency checks
 
 (defun my--bib-contents ()
-  "Parse the global bib file into a hash table mapping bib key to properties...here just the file."
+  "Parse the global bib file into a hash table from key to its file field."
   (parsebib-parse my-bib-path :fields '("file")))
 
-(defun my--bib-entry-file-string-to-list (string)
-  "Split a semicolon-and-space-delimited string into a list of strings."
-  ;; This is just split-string-default-separators with a semicolon.
-  (split-string string "[ \f\t\n\r\v;]+" t))
-
-(defun my--bib-entry-file-exists (file)
-  "Search in the default flat bibliography file paths for the given file, returning t for found and nil for not."
-  (file-exists-p (concat (file-name-as-directory my-bib-library-dir) file)))
-
-(defun my--bib-entry-file-string (key table)
-  "Return the (first) file string for a given bib entry, otherwise empty."
-  (let ((values (-filter (lambda (kv) (string= (car kv) "file"))
-			 (gethash key table))))
-    (cl-case (length values)
-      (0 "")
-      (1 (cdr (car values)))
-      (t (error "[my] Multiple file strings found")))))
-
-;; TODO: Consider returning cons cells.
-(defun my--bib-entry-to-pair-list (key table)
-  "Assume that the car of the value is file. Return flattened key-file pairs."
-  (let* ((files-string (my--bib-entry-file-string key table))
-	 (files (my--bib-entry-file-string-to-list files-string)))
-    (mapcar (lambda (file) (list key file)) files)))
+(defun my--bib-entry-files (entry)
+  "Return the list of files in the file field of a parsed bib ENTRY."
+  ;; This is just `split-string-default-separators' with a semicolon.
+  (split-string (or (cdr (assoc-string "file" entry)) "")
+		"[ \f\t\n\r\v;]+" t))
 
 (defun my--all-file-kvs ()
-  "Return all key-file pairs."
-  (let ((bib (my--bib-contents)))
-    (apply #'append (mapcar (lambda (key) (my--bib-entry-to-pair-list key bib))
-			    (hash-table-keys bib)))))
-
-(defun my--all-files ()
-  "Return all files in the bib file."
-  (mapcar (lambda (kv) (car (cdr kv))) (my--all-file-kvs)))
+  "Return a list of (KEY FILE) pairs for every file in the bib file."
+  (let ((pairs nil))
+    (maphash (lambda (key entry)
+	       (dolist (file (my--bib-entry-files entry))
+		 (push (list key file) pairs)))
+	     (my--bib-contents))
+    (nreverse pairs)))
 
 (defun my-bib-missing-files ()
-  "Return a list of pairs of key-file pairs to indicate files in .bib file that cannot be found."
-  (-filter (lambda (f)
-	     (not (my--bib-entry-file-exists (car (cdr f)))))
-	   (my--all-file-kvs)))
+  "Return the (KEY FILE) pairs whose FILE is missing from the library."
+  (seq-remove (lambda (kv)
+		(file-exists-p (file-name-concat my-bib-library-dir (cadr kv))))
+	      (my--all-file-kvs)))
 
 (defun my-reading-files-missing-entries ()
-  "Return a list of files in the reading location not connected to a bib entry."
-  (let ((files (directory-files my-bib-library-dir nil "^[^.]")))
-    (-difference files (my--all-files))))
+  "Return the files in the library not attached to a bib entry."
+  (seq-difference (directory-files my-bib-library-dir nil "\\`[^.]")
+		  (mapcar #'cadr (my--all-file-kvs))))
+
+(defun my-bib-unregistered-notes ()
+  "Return the note files whose names do not match a bib entry's key."
+  (let ((bib (my--bib-contents)))
+    (seq-remove (lambda (file)
+		  (gethash (file-name-sans-extension file) bib))
+		(directory-files my-bib-notes-dir nil "\\.org\\'"))))
 
 ;; TODO: Check all attached file names against patterns, including key.
 ;; TODO: Check all attached files in the expected directory.
@@ -159,44 +137,18 @@
 				     ("movie" . "-movie.*$")
 				     ("corrigendum" . "-corrigendum$")
 				     ("text" . ".+"))
-  "Ordered association list of pairs (TYPE . PATTERN) where TYPE is the attached file type and PATTERN is the allowed file name pattern.")
+  "Ordered alist of (TYPE . PATTERN) for files attached to bib entries.
+TYPE is the attached file type and PATTERN is its allowed file name pattern.")
 
 ;; We might want to group this with the alist above.
 (defvar my--bib-file-extension-alist '(("supplemental" . my--bib-file-supplemental-extensions)
 				       ("movie" . my--bib-file-movie-extensions)
 				       ("corrigendum" . my--bib-file-text-extensions)
 				       ("text" . my--bib-file-text-extensions))
-  "Association list of pairs (TYPE . LIST) where TYPE is the attaced file type and LIST is the list of allowed file types.")
+  "Alist of (TYPE . LIST) for files attached to bib entries.
+TYPE is the attached file type and LIST is its list of allowed extensions.")
 
-(defun my--bib-notes-file-to-entry (file)
-  "Return the expected bib entry for the given FILE, nil otherwise. Used to enforce assumptions on file names."
-  (let ((extension (file-name-extension file))
-	(name (file-name-sans-extension file)))))
-
-(defun my-bib-unregistered-notes ()
-  "Return a list of files in the notes directory not registered with a bib entry."
-  (let ((org-files (directory-files my-bib-notes-dir nil "\.org$")))
-    (-difference (org-files) (my--bib-all-entries))))
-
-;; TODO: Restrict to ebib-mode.
-;; TODO: Handle empty .bib file.
-;; TODO: Eliminate beep on last entry.
-;; TODO: Eliminate kill ring pollution.
-(defun my-ebib-iterate-entries ()
-  "Iterate through the ebib entries."
-  (interactive)
-  (ebib-goto-first-entry)
-  ;; Iterate by comparing keys after advancing.
-  ;; Stop when keys are equal.
-  (let ((last-entry nil)
-	(entry))
-    (ebib-copy-key-as-kill)
-    (setq entry (car kill-ring))
-    (while (not (eq last-entry entry))
-      (ebib-next-entry)
-      (setq last-entry entry)
-      (ebib-copy-key-as-kill)
-      (setq entry (car kill-ring)))))
+;;;; Citar and Org-roam
 
 (use-package citar
   :custom
@@ -225,37 +177,39 @@
 
 (use-package org-roam-bibtex
   :after org-roam
+  :custom
+  (orb-roam-ref-format 'org-cite)
   :config
-  (org-roam-bibtex-mode 1)
-  (setq orb-roam-ref-format 'org-cite))
+  (org-roam-bibtex-mode 1))
 
+;; citar-org-roam requires org-roam itself, so load it with citar alone
+;; rather than waiting on org-roam, which may never load first.
+;; https://github.com/emacs-citar/citar-org-roam/issues/26#issuecomment-1474938504
 (use-package citar-org-roam
-  :after (citar org-roam)
-  :config (citar-org-roam-mode))
-
-(setq citar-notes-source 'orb-citar-source)
-
-;; Can access this in Org mode, but citar-org-roam adds an extra citation key with unexpected formatting: @key.
-;; Should I consider :if-new, :info, :node, :props?
-;; Should I use citekey instead of citar-citekey?
-;; https://kristofferbalintona.me/posts/202206141852/
-(push '("n" "org-noter" plain
-	"%?"
-	:target
-	(file+head
-	 "ref/${citar-citekey}.org"
-	 ":PROPERTIES:
+  :after citar
+  :custom
+  (citar-org-roam-capture-template-key "n")
+  :config
+  ;; Can access this in Org mode, but citar-org-roam adds an extra citation key with unexpected formatting: @key.
+  ;; Should I consider :if-new, :info, :node, :props?
+  ;; Should I use citekey instead of citar-citekey?
+  ;; https://kristofferbalintona.me/posts/202206141852/
+  (add-to-list 'org-roam-capture-templates
+	       '("n" "org-noter" plain
+		 "%?"
+		 :target
+		 (file+head
+		  "ref/${citar-citekey}.org"
+		  ":PROPERTIES:
 :ROAM_REFS: [cite:@${citar-citekey}]
 :END:
 #+TITLE: ${citar-title}
 
 * Notes                                                               :noter:
 ")
-	:unnarrowed t) org-roam-capture-templates)
-
-(setq citar-org-roam-capture-template-key "n")
-
-;; https://github.com/emacs-citar/citar-org-roam/issues/26#issuecomment-1474938504
-(require 'org-roam)
+		 :unnarrowed t))
+  (citar-org-roam-mode))
 
 (provide 'init-bib)
+
+;;; init-bib.el ends here
