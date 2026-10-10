@@ -18,11 +18,10 @@
 	org-cycle-emulate-tab nil
 	org-src-preserve-indentation t
 	org-startup-indented t
-	org-tags-sort-function 'string-collate-lessp
-	org-todo-keywords '((sequence "TODO" "|" "DONE")
-			    (sequence "UNCLEAR" "|" "UNDERSTOOD")))
+	org-tags-sort-function 'string-collate-lessp)
   (setq org-agenda-files
-	(directory-files-recursively my-org-dir "\\.org\\'" nil t t))
+	(directory-files-recursively (file-name-concat my-org-dir "gtd")
+				     "\\.org\\'" nil t t))
 
   ;; This requires dvipng.
   ;; I installed this with tlmgr.
