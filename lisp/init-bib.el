@@ -12,11 +12,10 @@
 (setq org-cite-global-bibliography (list my-bib-path))
 
 (use-package biblio
-  :config
-  (setq biblio-bibtex-use-autokey t))
-
-;; For list filtering, etc.
-(use-package dash)
+  :bind (:map biblio-selection-mode-map
+	      ("e" . ebib-biblio-selection-import))
+  :custom
+  (biblio-bibtex-use-autokey t))
 
 ;; For field extraction.
 (use-package parsebib)
@@ -214,7 +213,7 @@
    ;; Override `org-cite-insert` key binding.
    ;; citar is better at differentiating between sources with the same authors and titles.
    ;; Multi-volume works are an example.
-   (:map org-mode-map :package org ("C-c b" . #'org-cite-insert)))
+   (:map org-mode-map :package org ("C-c b" . org-cite-insert)))
   :hook
   (LaTeX-mode . citar-capf-setup)
   (org-mode . citar-capf-setup))
